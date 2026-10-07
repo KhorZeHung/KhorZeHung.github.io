@@ -193,14 +193,14 @@ p { text-wrap: pretty; }
 .nav__mark {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-size: 0.78rem;
-  font-weight: 800;
+  border: 1px solid var(--rule);
+  font-size: 1.15rem;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
+.nav__brand:hover .nav__mark { border-color: var(--accent); color: var(--accent-text); }
 
 .nav__links { display: flex; align-items: center; gap: 2px; }
 .nav__links > a:not(.btn) {
