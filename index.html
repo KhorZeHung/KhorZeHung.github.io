@@ -82,29 +82,27 @@
   <main id="main">
     <!-- Hero -->
     <section class="hero" id="hero">
-      <!-- A Kafka topic drawn as partitions with messages flowing through. Decorative only. -->
-      <div class="stream" aria-hidden="true">
-        <div class="stream__lane" style="--d:19s;--o:-3s"><span></span><span></span><span></span></div>
-        <div class="stream__lane" style="--d:24s;--o:-11s"><span></span><span></span><span></span></div>
-        <div class="stream__lane" style="--d:16s;--o:-7s"><span></span><span></span><span></span></div>
-        <div class="stream__lane" style="--d:27s;--o:-15s"><span></span><span></span><span></span></div>
-        <div class="stream__lane" style="--d:21s;--o:-2s"><span></span><span></span><span></span></div>
-      </div>
-
       <div class="container hero__inner">
-        <p class="hero__hello load" style="--i:0">Hello, I'm</p>
-        <h1 class="hero__name load" style="--i:1">Khor Ze&nbsp;Hung</h1>
-
-        <div class="hero__foot">
-          <div class="load" style="--i:2">
-            <p class="hero__role">Full stack developer</p>
-            <p class="hero__bio">I build Go microservices, Kafka pipelines and React frontends for a multi-tenant fintech platform in Kuala Lumpur.</p>
-          </div>
+        <div class="hero__text">
+          <p class="hero__hello load" style="--i:0">Hello, I'm</p>
+          <h1 class="hero__name load" style="--i:1">Khor Ze Hung</h1>
+          <p class="hero__role load" style="--i:2">Full stack developer</p>
+          <p class="hero__bio load" style="--i:2">I build Go microservices, Kafka pipelines and React frontends for a multi-tenant fintech platform in Kuala Lumpur.</p>
           <div class="hero__ctas load" style="--i:3">
             <a class="btn btn--solid" href="#contact">Get in touch</a>
             <a class="btn btn--line" href="#about">About me</a>
           </div>
         </div>
+
+        <!-- Live map of the platform I work on. Rendered by js/sysmap.js. -->
+        <figure class="sysmap load" style="--i:2">
+          <figcaption class="sysmap__head">
+            <span class="sysmap__title">What I build at COS Great Trading</span>
+            <span class="sysmap__legend" aria-hidden="true"><span>Request</span><span class="is-sse">Live update (SSE)</span></span>
+          </figcaption>
+          <svg class="sysmap__svg" id="sysmap" role="group" aria-label="Diagram of the platform: web app, Go APIs, Apache Kafka, seven Go services and the data tier"></svg>
+          <p class="sysmap__caption" id="sysmap-caption" aria-live="polite"></p>
+        </figure>
       </div>
     </section>
 
@@ -361,5 +359,6 @@
   </footer>
 
   <script src="js/main.js" defer></script>
+  <script src="js/sysmap.js" defer></script>
 </body>
 </html>
