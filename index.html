@@ -92,29 +92,31 @@
       </div>
 
       <div class="container hero__inner">
-        <div class="hero__text">
-          <p class="hero__hello load" style="--i:0">Hello, I'm</p>
-          <h1 class="hero__name load" style="--i:1">Khor Ze Hung</h1>
-          <p class="hero__role load" style="--i:2">Full stack developer</p>
-          <p class="hero__bio load" style="--i:2">I build Go microservices, Kafka pipelines and React frontends for a multi-tenant fintech platform in Kuala Lumpur.</p>
+        <p class="hero__hello load" style="--i:0">Hello, I'm</p>
+        <h1 class="hero__name load" style="--i:1">Khor Ze&nbsp;Hung</h1>
+
+        <div class="hero__foot">
+          <div class="load" style="--i:2">
+            <p class="hero__role">Full stack developer</p>
+            <p class="hero__bio">I build Go microservices, Kafka pipelines and React frontends for a multi-tenant fintech platform in Kuala Lumpur.</p>
+          </div>
           <div class="hero__ctas load" style="--i:3">
             <a class="btn btn--solid" href="#contact">Get in touch</a>
             <a class="btn btn--line" href="#about">About me</a>
           </div>
         </div>
-
-        <figure class="hero__portrait load" style="--i:1">
-          <img src="assets/portrait.webp" alt="Portrait of Khor Ze Hung" width="538" height="638" fetchpriority="high" decoding="async" />
-        </figure>
       </div>
     </section>
 
     <!-- About -->
     <section class="section about" id="about">
       <div class="container about__grid">
-        <h2 class="section__title about__title">About me</h2>
+        <figure class="about__photo">
+          <img src="assets/profile.webp" alt="Portrait of Khor Ze Hung" width="640" height="640" loading="lazy" decoding="async" />
+        </figure>
 
         <div class="about__body">
+          <h2 class="section__title">About me</h2>
           <p>I'm a backend-focused developer at <strong>COS Great Trading</strong>, where I've spent the past two years building a production multi-tenant fintech SaaS platform that serves 5 brokers.</p>
           <p>I designed and delivered 6 Go microservices end to end, from system design through deployment. My day-to-day sits around Apache Kafka, MongoDB, Apache Doris and QuestDB, with React 19 and TypeScript when a feature needs a frontend.</p>
           <p>Outside work I'm building <a class="inline-link" href="https://renotech.space/" target="_blank" rel="noopener">Renotech</a>, a quotation platform for renovation contractors in Malaysia.</p>

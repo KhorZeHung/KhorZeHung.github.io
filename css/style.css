@@ -232,11 +232,10 @@ p { text-wrap: pretty; }
   position: relative;
   min-height: 100dvh;
   display: flex;
-  align-items: stretch;
-  padding-top: var(--nav-h);
+  align-items: flex-end;
+  padding: calc(var(--nav-h) + 48px) 0 clamp(56px, 9vh, 96px);
   overflow: hidden;
   isolation: isolate;
-  border-bottom: 1px solid var(--rule);
 }
 
 /* Kafka topic: five partitions, messages moving left to right */
@@ -277,25 +276,17 @@ p { text-wrap: pretty; }
 .stream__lane span:nth-child(2)::before { width: 24px; opacity: 0.5; }
 .stream__lane span:nth-child(3)::before { width: 56px; opacity: 0.3; }
 
-.hero__inner {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  align-items: end;
-  gap: 24px 48px;
-}
-
-.hero__text { align-self: center; padding: 48px 0 clamp(56px, 9vh, 96px); }
+.hero__inner { position: relative; }
 
 .hero__hello {
   font-size: clamp(1.05rem, 1.6vw, 1.3rem);
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .hero__name {
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 8vw, 7.25rem);
+  font-size: clamp(3.4rem, 12vw, 10rem);
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.035em;
@@ -303,52 +294,30 @@ p { text-wrap: pretty; }
   margin-left: -0.04em;
 }
 
+.hero__foot {
+  margin-top: clamp(32px, 5vw, 56px);
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 24px 48px;
+}
 .hero__role {
-  margin-top: 28px;
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
   color: var(--accent-text);
 }
 .hero__bio {
-  margin-top: 10px;
-  max-width: 44ch;
+  margin-top: 8px;
+  max-width: 48ch;
   font-size: clamp(1.02rem, 1.4vw, 1.15rem);
   color: var(--text-2);
 }
-.hero__ctas { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; }
-
-/* Cut-out portrait standing on the hero's bottom rule, with a disc behind
-   the head so dark hair still reads against the dark background. */
-.hero__portrait {
-  position: relative;
-  isolation: isolate;
-  justify-self: center;
-  width: min(100%, 500px);
-}
-.hero__portrait::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  top: 4%;
-  width: 96%;
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  border: 1px solid var(--rule);
-  background:
-    radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--accent) 22%, var(--panel)), var(--panel) 68%);
-}
-.hero__portrait img {
-  width: 100%;
-  height: auto;
-  max-height: calc(100dvh - var(--nav-h) - 32px);
-  object-fit: contain;
-  object-position: bottom center;
-}
+.hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ---------- Sections ---------- */
 .section { padding: clamp(80px, 11vw, 136px) 0 clamp(88px, 12vw, 148px); }
@@ -372,18 +341,31 @@ p { text-wrap: pretty; }
 
 .about__grid {
   display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-  gap: clamp(28px, 6vw, 80px);
-  align-items: start;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(36px, 7vw, 96px);
+  align-items: center;
+}
+
+.about__photo {
+  border-radius: 28px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+.about__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
 }
 
 .about__body > p {
   margin-top: 20px;
-  max-width: 62ch;
+  max-width: 60ch;
   color: var(--text-2);
-  font-size: 1.1rem;
 }
-.about__body > p:first-of-type { margin-top: 6px; }
+.about__body > p:first-of-type { margin-top: 28px; }
 .about__body strong { color: var(--text); font-weight: 600; }
 
 .facts {
@@ -640,23 +622,12 @@ i.tech__logo {
   .nav__links > a.is-active::after { left: 4px; right: auto; width: 24px; bottom: 8px; }
   .nav__resume { margin: 12px 0 0; justify-content: center; }
 
-  .stream { width: 100%; top: calc(var(--nav-h) + 3%); height: 24%; opacity: 0.7; }
+  .stream { width: 100%; top: calc(var(--nav-h) + 4%); height: 26%; opacity: 0.7; }
 
-  .hero { min-height: auto; }
-  .hero__inner { grid-template-columns: 1fr; gap: 0; }
-  .hero__portrait {
-    order: -1;
-    margin-top: 20px;
-    width: min(74vw, 340px);
-  }
-  .hero__portrait img {
-    max-height: none;
-    mask-image: linear-gradient(to bottom, #000 72%, transparent);
-    -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent);
-  }
-  .hero__text { padding: 0 0 56px; margin-top: -24px; }
+  .hero__foot { grid-template-columns: 1fr; }
 
   .about__grid { grid-template-columns: 1fr; }
+  .about__photo { max-width: 380px; aspect-ratio: 1; }
 
   .experience__grid { grid-template-columns: 1fr; }
   .experience__title { position: static; }
