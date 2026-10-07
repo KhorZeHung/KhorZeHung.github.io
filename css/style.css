@@ -414,13 +414,42 @@ i.tech__logo {
 }
 .experience__title { position: sticky; top: calc(var(--nav-h) + 32px); }
 
-.timeline { display: grid; gap: 52px; }
-.timeline__item {
+.timeline {
   position: relative;
-  padding-left: 28px;
-  border-left: 2px solid var(--rule);
+  display: grid;
+  gap: 64px;
+  padding-left: 40px;
 }
-.timeline__item:first-child { border-left-color: var(--accent); }
+/* Track, and the accent line that fills it as you scroll */
+.timeline::before,
+.timeline::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--rule);
+}
+.timeline::after {
+  background: linear-gradient(var(--accent), color-mix(in srgb, var(--accent) 35%, transparent));
+  transform-origin: top;
+}
+
+.timeline__item { position: relative; }
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid var(--accent);
+  background: var(--bg);
+  box-shadow: 0 0 0 5px var(--bg);
+}
 
 .timeline__date {
   font-size: 0.92rem;
@@ -528,6 +557,54 @@ i.tech__logo {
   html { scroll-behavior: auto; }
 }
 
+/* ---------- Experience: scroll-driven focus ----------
+   The entry in the middle of the viewport is sharp and its dot fills;
+   entries near the top and bottom edges blur and fade. The accent line
+   grows with scroll. Browsers without scroll-driven animations get the
+   static timeline. */
+@property --focus {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .timeline { view-timeline: --timeline block; }
+    .timeline::after {
+      animation: timeline-fill linear both;
+      animation-timeline: --timeline;
+      animation-range: entry 50vh exit 50vh;
+    }
+
+    .timeline__item {
+      animation: timeline-focus linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+      filter: blur(calc((1 - var(--focus)) * 5px));
+      opacity: calc(0.2 + 0.8 * var(--focus));
+      transform: translateX(calc((1 - var(--focus)) * 14px));
+    }
+    .timeline__item::before {
+      background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--bg));
+      box-shadow:
+        0 0 0 5px var(--bg),
+        0 0 0 calc(5px + var(--focus) * 6px) color-mix(in srgb, var(--accent) calc(var(--focus) * 22%), transparent);
+    }
+  }
+}
+
+@keyframes timeline-fill {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+@keyframes timeline-focus {
+  0% { --focus: 0; }
+  28% { --focus: 1; }
+  74% { --focus: 1; }
+  100% { --focus: 0; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
   .stack__group { grid-template-columns: 1fr; gap: 12px; }
@@ -583,6 +660,8 @@ i.tech__logo {
   .tech { gap: 10px; padding: 10px; min-height: 56px; }
   .tech__logo, i.tech__logo { width: 26px; height: 26px; font-size: 26px; }
   .tech__name { font-size: 0.9rem; }
-  .timeline__item { padding-left: 20px; }
+  .timeline { padding-left: 32px; }
+  .timeline::before, .timeline::after { left: 6px; }
+  .timeline__item::before { left: -32px; width: 14px; height: 14px; }
   .footer__inner { justify-content: center; text-align: center; }
 }
