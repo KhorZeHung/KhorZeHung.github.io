@@ -322,6 +322,18 @@ p { text-wrap: pretty; }
 .about__body > p:first-of-type { margin-top: 28px; }
 .about__body strong { color: var(--text); font-weight: 600; }
 
+/* Key phrases: a teal marker sweep behind the text (full by default,
+   drawn in on scroll where scroll-driven animations are supported) */
+.hl {
+  color: var(--text);
+  font-weight: 600;
+  padding: 0 2px;
+  margin: 0 -2px;
+  background: linear-gradient(color-mix(in srgb, var(--accent) 30%, transparent), color-mix(in srgb, var(--accent) 30%, transparent)) no-repeat 0 88% / 100% 42%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
 .facts {
   margin-top: 44px;
   display: grid;
@@ -577,7 +589,8 @@ i.tech__logo {
       animation-range: entry 50vh exit 50vh;
     }
 
-    .timeline__item {
+    .timeline__item,
+    .about__body > p {
       animation: timeline-focus linear both;
       animation-timeline: view();
       animation-range: cover 0% cover 100%;
@@ -585,6 +598,67 @@ i.tech__logo {
       opacity: calc(0.2 + 0.8 * var(--focus));
       transform: translateX(calc((1 - var(--focus)) * 14px));
     }
+    .about__body > p { transform: none; }
+
+    /* Hero hands off to the page: the name blurs and shrinks first, the rest
+       follows, then the block fades. Uses filter/scale/translate so it does
+       not fight the load-in animation, which owns transform and opacity. */
+    .hero { view-timeline: --hero block; }
+    .hero__hello,
+    .hero__name {
+      transform-origin: left center;
+      animation: rise 0.9s var(--ease) forwards, hero-exit-name linear both;
+      animation-delay: calc(var(--i, 0) * 110ms + 60ms), 0s;
+      animation-timeline: auto, --hero;
+      animation-range: normal, exit 0% exit 65%;
+    }
+    .hero__role,
+    .hero__bio,
+    .hero__ctas {
+      animation: rise 0.9s var(--ease) forwards, hero-exit-rest linear both;
+      animation-delay: calc(var(--i, 0) * 110ms + 60ms), 0s;
+      animation-timeline: auto, --hero;
+      animation-range: normal, exit 8% exit 72%;
+    }
+    .hero__text {
+      animation: fade-out linear both;
+      animation-timeline: --hero;
+      animation-range: exit 25% exit 85%;
+    }
+
+    /* About photo un-blurs and settles as it enters */
+    /* The frame clips (overflow: hidden makes it a scroll container), so the
+       image follows a named timeline tracked on the frame, not view(). */
+    .about__photo { view-timeline: --photo block; }
+    .about__photo img {
+      animation: photo-in linear both;
+      animation-timeline: --photo;
+      animation-range: entry 0% cover 45%;
+    }
+
+    /* Skills: logos pop in one after another as each row scrolls up */
+    .tech {
+      animation: tech-pop linear both;
+      animation-timeline: view();
+      animation-range: cover calc(4% + var(--n, 0) * 3.5%) cover calc(22% + var(--n, 0) * 3.5%);
+    }
+    .tech:nth-child(2) { --n: 1; }
+    .tech:nth-child(3) { --n: 2; }
+    .tech:nth-child(4) { --n: 3; }
+    .tech:nth-child(5) { --n: 4; }
+    .tech:nth-child(6) { --n: 5; }
+    .tech:nth-child(7) { --n: 6; }
+    .tech:nth-child(8) { --n: 7; }
+    .tech:nth-child(9) { --n: 8; }
+    .tech:nth-child(10) { --n: 9; }
+
+    /* Marker highlight sweeps in as the phrase crosses the lower half */
+    .hl {
+      animation: hl-sweep linear both;
+      animation-timeline: view();
+      animation-range: entry 100% cover 55%;
+    }
+
     .timeline__item::before {
       background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--bg));
       box-shadow:
@@ -594,6 +668,28 @@ i.tech__logo {
   }
 }
 
+@keyframes hero-exit-name {
+  to { filter: blur(12px); scale: 0.9; translate: 0 48px; }
+}
+@keyframes hero-exit-rest {
+  to { filter: blur(8px); translate: 0 -24px; }
+}
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+@keyframes photo-in {
+  from { filter: blur(14px) saturate(0.6); scale: 1.18; opacity: 0.35; }
+  to { filter: none; scale: 1; opacity: 1; }
+}
+@keyframes tech-pop {
+  0% { opacity: 0; filter: blur(6px); scale: 0.8; }
+  70% { opacity: 1; filter: blur(0); scale: 1.04; }
+  100% { opacity: 1; filter: none; scale: 1; }
+}
+@keyframes hl-sweep {
+  from { background-size: 0% 42%; }
+  to { background-size: 100% 42%; }
+}
 @keyframes timeline-fill {
   from { transform: scaleY(0); }
   to { transform: scaleY(1); }
