@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khor Ze Hung | Full Stack Developer</title>
+  <meta name="description" content="Khor Ze Hung is a backend-focused full stack developer in Kuala Lumpur building Go microservices, Kafka pipelines and React frontends for fintech SaaS." />
+  <meta name="author" content="Khor Ze Hung" />
+  <link rel="canonical" href="https://khorzehung.github.io/" />
+  <meta name="theme-color" content="#0a0f1a" />
+
+  <!-- Open Graph / social previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://khorzehung.github.io/" />
+  <meta property="og:title" content="Khor Ze Hung | Full Stack Developer" />
+  <meta property="og:description" content="Go microservices, Kafka pipelines and React frontends for fintech SaaS." />
+  <meta property="og:image" content="https://khorzehung.github.io/assets/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+  <!-- Apply saved theme before paint to avoid a flash -->
+  <script>
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Khor Ze Hung",
+    "jobTitle": "Full Stack Developer",
+    "url": "https://khorzehung.github.io/",
+    "image": "https://khorzehung.github.io/assets/profile.webp",
+    "email": "mailto:khorzehung@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Kuala Lumpur", "addressCountry": "MY" },
+    "sameAs": ["https://github.com/KhorZeHung", "https://www.linkedin.com/in/zehung/"],
+    "knowsAbout": ["Go", "Apache Kafka", "MongoDB", "React", "TypeScript", "Next.js"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a class="nav__brand" href="#hero" aria-label="Khor Ze Hung, back to top">
+        <span class="nav__mark">ZH</span>
+        <span class="nav__name">Khor Ze Hung</span>
+      </a>
+
+      <nav class="nav__links" id="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn--ghost btn--sm nav__resume" href="assets/Khor-Ze-Hung-Resume.pdf" download>
+          <i class="ph ph-download-simple" aria-hidden="true"></i> Resume
+        </a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to light theme">
+          <i class="ph ph-sun" aria-hidden="true"></i>
+        </button>
+        <button class="icon-btn nav__burger" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <i class="ph ph-list" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <p class="hero__hello reveal">Hi there, I'm</p>
+        <h1 class="hero__title reveal">Khor Ze Hung.<br /><span class="hero__role">Full Stack Developer.</span></h1>
+        <p class="hero__bio reveal">I build Go microservices, Kafka pipelines and React frontends for a multi-tenant fintech platform in Kuala Lumpur.</p>
+        <div class="hero__ctas reveal">
+          <a class="btn btn--primary" href="#projects">View projects <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about" id="about">
+      <div class="container about__grid">
+        <figure class="about__photo reveal">
+          <img src="assets/profile.webp" alt="Portrait of Khor Ze Hung" width="640" height="640" loading="lazy" decoding="async" />
+        </figure>
+
+        <div class="about__body reveal">
+          <h2 class="section__title">About me</h2>
+          <p>I'm a backend-focused developer at <strong>COS Great Trading</strong>, where I've spent the past two years building a production multi-tenant fintech SaaS platform that serves 5 brokers.</p>
+          <p>I designed and delivered 6 Go microservices end to end, from system design through deployment. My day-to-day sits around Apache Kafka, MongoDB, Apache Doris and QuestDB, with React 19 and TypeScript when a feature needs a frontend.</p>
+          <p>Outside work I'm building <strong>Renotech</strong>, a quotation platform for renovation contractors in Malaysia.</p>
+
+          <dl class="about__facts">
+            <div><dt>2+ yrs</dt><dd>shipping to production</dd></div>
+            <div><dt>6</dt><dd>Go microservices built</dd></div>
+            <div><dt>5</dt><dd>broker tenants served</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section skills" id="skills">
+      <div class="container">
+        <h2 class="section__title reveal">Skills</h2>
+        <p class="section__lead reveal">Go is my primary language. The rest is what I reach for to ship and run it.</p>
+
+        <div class="skills__grid">
+          <article class="skill-tile skill-tile--core reveal">
+            <h3><i class="ph ph-code" aria-hidden="true"></i> Languages and backend</h3>
+            <ul class="badges">
+              <li class="badge badge--accent">Go</li>
+              <li class="badge badge--accent">Gin</li>
+              <li class="badge">TypeScript</li>
+              <li class="badge">JavaScript</li>
+            </ul>
+          </article>
+
+          <article class="skill-tile reveal">
+            <h3><i class="ph ph-database" aria-hidden="true"></i> Databases</h3>
+            <ul class="badges">
+              <li class="badge badge--accent">MongoDB</li>
+              <li class="badge">Apache Doris</li>
+              <li class="badge">QuestDB</li>
+            </ul>
+          </article>
+
+          <article class="skill-tile skill-tile--pattern reveal">
+            <h3><i class="ph ph-flow-arrow" aria-hidden="true"></i> Messaging</h3>
+            <ul class="badges">
+              <li class="badge badge--accent">Apache Kafka</li>
+              <li class="badge">Server-Sent Events</li>
+            </ul>
+          </article>
+
+          <article class="skill-tile skill-tile--wide reveal">
+            <h3><i class="ph ph-browser" aria-hidden="true"></i> Frontend</h3>
+            <ul class="badges">
+              <li class="badge">React 19</li>
+              <li class="badge">Next.js</li>
+              <li class="badge">TypeScript</li>
+              <li class="badge">Vite</li>
+              <li class="badge">Tailwind CSS</li>
+              <li class="badge">shadcn/ui</li>
+              <li class="badge">Ant Design</li>
+            </ul>
+          </article>
+
+          <article class="skill-tile skill-tile--wide reveal">
+            <h3><i class="ph ph-cloud" aria-hidden="true"></i> Infrastructure</h3>
+            <ul class="badges">
+              <li class="badge">Linux (Ubuntu)</li>
+              <li class="badge">Nginx</li>
+              <li class="badge">Cloudflare DNS</li>
+              <li class="badge">Cloudflare Tunnel</li>
+              <li class="badge">Cloudflare R2</li>
+              <li class="badge">Vercel</li>
+              <li class="badge">WinSCP</li>
+            </ul>
+          </article>
+
+          <article class="skill-tile skill-tile--full reveal">
+            <h3><i class="ph ph-wrench" aria-hidden="true"></i> Tools and ways of working</h3>
+            <ul class="badges">
+              <li class="badge">Git</li>
+              <li class="badge">Bitbucket</li>
+              <li class="badge">Sourcetree</li>
+              <li class="badge">Postman</li>
+              <li class="badge">Firebase</li>
+              <li class="badge">SendGrid</li>
+              <li class="badge">Atlassian</li>
+              <li class="badge">Lark</li>
+              <li class="badge">Slack</li>
+              <li class="badge">Agile / Scrum</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section experience" id="experience">
+      <div class="container experience__grid">
+        <div class="experience__intro reveal">
+          <h2 class="section__title">Experience</h2>
+          <a class="btn btn--ghost" href="assets/Khor-Ze-Hung-Resume.pdf" download>
+            <i class="ph ph-download-simple" aria-hidden="true"></i> Download resume
+          </a>
+        </div>
+
+        <ol class="timeline">
+          <li class="timeline__item reveal">
+            <p class="timeline__date">Dec 2025 - Present</p>
+            <h3 class="timeline__role">Founder and Developer</h3>
+            <p class="timeline__org">Renotech<span>Independent SaaS</span></p>
+            <ul class="timeline__points">
+              <li>Built a full stack quotation platform for renovation contractors with Next.js (App Router) and MongoDB.</li>
+              <li>Deployed on Vercel, with Cloudflare DNS and Cloudflare R2 for object storage.</li>
+            </ul>
+          </li>
+
+          <li class="timeline__item reveal">
+            <p class="timeline__date">Jun 2024 - Present</p>
+            <h3 class="timeline__role">Backend Developer (Full Stack)</h3>
+            <p class="timeline__org">COS Great Trading<span>Kuala Lumpur, Malaysia</span></p>
+            <ul class="timeline__points">
+              <li>Designed and built 6 Go microservices from scratch: KYC verification, leads, case management, gamification, questionnaire forms and centralised logging.</li>
+              <li>Engineered a financial reporting pipeline combining scheduled batch repopulation with a real-time Kafka consumer and idempotent deduplication.</li>
+              <li>Delivered real-time lead updates to the frontend with Server-Sent Events and Kafka event propagation across consumer services.</li>
+              <li>Owned the multi-tenant deployment pipeline with versioned backups and post-deploy health checks across all brands.</li>
+              <li>Built frontend features in React 19 and TypeScript, and kept Postman collections as the API contract for frontend developers.</li>
+            </ul>
+          </li>
+
+          <li class="timeline__item reveal">
+            <p class="timeline__date">Graduated 2024</p>
+            <h3 class="timeline__role">Bachelor of e-Business Technology and Management</h3>
+            <p class="timeline__org">YPC International College<span>in partnership with Liverpool John Moores University (UK)</span></p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section projects" id="projects">
+      <div class="container">
+        <h2 class="section__title reveal">Selected projects</h2>
+        <p class="section__lead reveal">One product I run myself, and two systems I designed and shipped in production.</p>
+
+        <div class="projects__grid">
+          <!-- Featured: Renotech -->
+          <article class="project project--featured reveal">
+            <a class="project__media" href="https://renotech.space/" target="_blank" rel="noopener" aria-label="Open Renotech live site">
+              <img src="assets/renotech.webp" alt="Renotech landing page: Quote faster, win more jobs" width="1200" height="600" loading="lazy" decoding="async" />
+            </a>
+            <div class="project__body">
+              <h3 class="project__title">Renotech</h3>
+              <p class="project__desc">A SaaS platform that turns hours of manual quotation work for Malaysian renovation contractors into a 15-minute workflow. I built it end to end and run it in production.</p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Next.js</li><li>TypeScript</li><li>MongoDB</li><li>Vercel</li><li>Cloudflare R2</li>
+              </ul>
+              <a class="btn btn--primary btn--sm" href="https://renotech.space/" target="_blank" rel="noopener">
+                Visit live site <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- KYC -->
+          <article class="project reveal">
+            <div class="project__media project__media--diagram" role="img" aria-label="Flow: onboarding app calls the Go KYC service, which checks a liveness provider, saves results to MongoDB and publishes events to Kafka">
+              <div class="flow">
+                <div class="flow__row">
+                  <span class="node">Onboarding app</span>
+                  <i class="ph ph-arrow-right arrow" aria-hidden="true"></i>
+                  <span class="node node--accent">KYC service<small>Go + Gin</small></span>
+                  <i class="ph ph-arrows-left-right arrow" aria-hidden="true"></i>
+                  <span class="node">Liveness provider</span>
+                </div>
+                <i class="ph ph-arrow-down arrow" aria-hidden="true"></i>
+                <div class="flow__row flow__row--narrow">
+                  <span class="node node--store">MongoDB<small>records</small></span>
+                  <span class="node node--store">Kafka<small>status events</small></span>
+                </div>
+              </div>
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">KYC Verification Service</h3>
+              <p class="project__desc">A Go microservice for customer onboarding on a multi-tenant broker platform. It integrates a third-party liveness detection service, stores verification records in MongoDB and publishes status changes to Kafka so downstream services react in real time.</p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Go</li><li>Gin</li><li>MongoDB</li><li>Apache Kafka</li><li>Liveness API</li>
+              </ul>
+              <a class="btn btn--ghost btn--sm js-placeholder" href="#" data-msg="Write-up coming soon">
+                Case study <i class="ph ph-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Reporting -->
+          <article class="project reveal">
+            <div class="project__media project__media--diagram" role="img" aria-label="Flow: a scheduled batch job and a real-time Kafka consumer both feed an idempotent deduplication step that writes report data to MongoDB">
+              <div class="flow">
+                <div class="flow__row flow__row--narrow">
+                  <span class="node">Batch job<small>scheduled</small></span>
+                  <span class="node">Kafka consumer<small>real time</small></span>
+                </div>
+                <i class="ph ph-arrow-down arrow" aria-hidden="true"></i>
+                <div class="flow__row">
+                  <span class="node node--accent">Idempotent dedup<small>Go</small></span>
+                  <i class="ph ph-arrow-right arrow" aria-hidden="true"></i>
+                  <span class="node node--store">MongoDB<small>report data</small></span>
+                </div>
+              </div>
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">Financial Reporting Pipeline</h3>
+              <p class="project__desc">A reporting pipeline in Go that pairs a scheduled batch repopulation service with a real-time Kafka consumer. Idempotent deduplication keeps figures correct when events are replayed or arrive twice, with MongoDB as the store.</p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Go</li><li>Apache Kafka</li><li>MongoDB</li><li>Batch + Streaming</li>
+              </ul>
+              <a class="btn btn--ghost btn--sm js-placeholder" href="#" data-msg="Write-up coming soon">
+                Case study <i class="ph ph-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+      <div class="container contact__inner reveal">
+        <h2 class="contact__title">Let's build something together.</h2>
+        <p class="contact__lead">Have a role or a project in mind? Send me an email and I'll get back to you.</p>
+
+        <div class="contact__email">
+          <a href="mailto:khorzehung@gmail.com" class="contact__address">khorzehung@gmail.com</a>
+          <button class="icon-btn" id="copy-email" type="button" data-email="khorzehung@gmail.com" aria-label="Copy email address">
+            <i class="ph ph-copy" aria-hidden="true"></i>
+          </button>
+          <span class="contact__copied" id="copy-status" role="status" aria-live="polite"></span>
+        </div>
+
+        <ul class="socials" aria-label="Social links">
+          <li><a href="https://github.com/KhorZeHung" target="_blank" rel="noopener" aria-label="GitHub"><i class="ph ph-github-logo" aria-hidden="true"></i><span>GitHub</span></a></li>
+          <li><a href="https://www.linkedin.com/in/zehung/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph ph-linkedin-logo" aria-hidden="true"></i><span>LinkedIn</span></a></li>
+          <li><a href="mailto:khorzehung@gmail.com" aria-label="Email"><i class="ph ph-envelope-simple" aria-hidden="true"></i><span>Email</span></a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; <span id="year">2026</span> Khor Ze Hung</p>
+      <a href="#hero" class="footer__top">Back to top <i class="ph ph-arrow-up" aria-hidden="true"></i></a>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
