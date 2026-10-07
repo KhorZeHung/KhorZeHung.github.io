@@ -7,7 +7,7 @@
   <meta name="description" content="Khor Ze Hung is a backend-focused full stack developer in Kuala Lumpur building Go microservices, Kafka pipelines and React frontends for fintech SaaS." />
   <meta name="author" content="Khor Ze Hung" />
   <link rel="canonical" href="https://khorzehung.github.io/" />
-  <meta name="theme-color" content="#0a0f1a" />
+  <meta name="theme-color" content="#0e1420" />
 
   <!-- Open Graph / social previews -->
   <meta property="og:type" content="website" />
@@ -29,7 +29,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
   <link rel="stylesheet" href="css/style.css" />
 
@@ -51,10 +51,10 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="nav" id="top">
+  <header class="nav">
     <div class="container nav__inner">
       <a class="nav__brand" href="#hero" aria-label="Khor Ze Hung, back to top">
-        <span class="nav__mark">ZH</span>
+        <span class="nav__mark" aria-hidden="true">ZH</span>
         <span class="nav__name">Khor Ze Hung</span>
       </a>
 
@@ -62,9 +62,8 @@
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
-        <a class="btn btn--ghost btn--sm nav__resume" href="assets/Khor-Ze-Hung-Resume.pdf" download>
+        <a class="btn btn--line btn--sm nav__resume" href="assets/Khor-Ze-Hung-Resume.pdf" download>
           <i class="ph ph-download-simple" aria-hidden="true"></i> Resume
         </a>
       </nav>
@@ -83,14 +82,28 @@
   <main id="main">
     <!-- Hero -->
     <section class="hero" id="hero">
-      <div class="hero__glow" aria-hidden="true"></div>
+      <!-- A Kafka topic drawn as partitions with messages flowing through. Decorative only. -->
+      <div class="stream" aria-hidden="true">
+        <div class="stream__lane" style="--d:19s;--o:-3s"><span></span><span></span><span></span></div>
+        <div class="stream__lane" style="--d:24s;--o:-11s"><span></span><span></span><span></span></div>
+        <div class="stream__lane" style="--d:16s;--o:-7s"><span></span><span></span><span></span></div>
+        <div class="stream__lane" style="--d:27s;--o:-15s"><span></span><span></span><span></span></div>
+        <div class="stream__lane" style="--d:21s;--o:-2s"><span></span><span></span><span></span></div>
+      </div>
+
       <div class="container hero__inner">
-        <p class="hero__hello reveal">Hi there, I'm</p>
-        <h1 class="hero__title reveal">Khor Ze Hung.<br /><span class="hero__role">Full Stack Developer.</span></h1>
-        <p class="hero__bio reveal">I build Go microservices, Kafka pipelines and React frontends for a multi-tenant fintech platform in Kuala Lumpur.</p>
-        <div class="hero__ctas reveal">
-          <a class="btn btn--primary" href="#projects">View projects <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        <p class="hero__hello load" style="--i:0">Hello, I'm</p>
+        <h1 class="hero__name load" style="--i:1">Khor Ze&nbsp;Hung</h1>
+
+        <div class="hero__foot">
+          <div class="load" style="--i:2">
+            <p class="hero__role">Full stack developer</p>
+            <p class="hero__bio">I build Go microservices, Kafka pipelines and React frontends for a multi-tenant fintech platform in Kuala Lumpur.</p>
+          </div>
+          <div class="hero__ctas load" style="--i:3">
+            <a class="btn btn--solid" href="#contact">Get in touch</a>
+            <a class="btn btn--line" href="#about">About me</a>
+          </div>
         </div>
       </div>
     </section>
@@ -98,20 +111,20 @@
     <!-- About -->
     <section class="section about" id="about">
       <div class="container about__grid">
-        <figure class="about__photo reveal">
+        <figure class="about__photo">
           <img src="assets/profile.webp" alt="Portrait of Khor Ze Hung" width="640" height="640" loading="lazy" decoding="async" />
         </figure>
 
-        <div class="about__body reveal">
+        <div class="about__body">
           <h2 class="section__title">About me</h2>
           <p>I'm a backend-focused developer at <strong>COS Great Trading</strong>, where I've spent the past two years building a production multi-tenant fintech SaaS platform that serves 5 brokers.</p>
           <p>I designed and delivered 6 Go microservices end to end, from system design through deployment. My day-to-day sits around Apache Kafka, MongoDB, Apache Doris and QuestDB, with React 19 and TypeScript when a feature needs a frontend.</p>
-          <p>Outside work I'm building <strong>Renotech</strong>, a quotation platform for renovation contractors in Malaysia.</p>
+          <p>Outside work I'm building <a class="inline-link" href="https://renotech.space/" target="_blank" rel="noopener">Renotech</a>, a quotation platform for renovation contractors in Malaysia.</p>
 
-          <dl class="about__facts">
-            <div><dt>2+ yrs</dt><dd>shipping to production</dd></div>
-            <div><dt>6</dt><dd>Go microservices built</dd></div>
-            <div><dt>5</dt><dd>broker tenants served</dd></div>
+          <dl class="facts">
+            <div><dt>2+</dt><dd>years shipping to production</dd></div>
+            <div><dt>6</dt><dd>Go microservices designed and built</dd></div>
+            <div><dt>5</dt><dd>broker tenants on the platform</dd></div>
           </dl>
         </div>
       </div>
@@ -120,78 +133,159 @@
     <!-- Skills -->
     <section class="section skills" id="skills">
       <div class="container">
-        <h2 class="section__title reveal">Skills</h2>
-        <p class="section__lead reveal">Go is my primary language. The rest is what I reach for to ship and run it.</p>
+        <h2 class="section__title">Skills</h2>
+        <p class="section__lead">Go is my primary language. The rest is what I use to ship and run it.</p>
 
-        <div class="skills__grid">
-          <article class="skill-tile skill-tile--core reveal">
-            <h3><i class="ph ph-code" aria-hidden="true"></i> Languages and backend</h3>
-            <ul class="badges">
-              <li class="badge badge--accent">Go</li>
-              <li class="badge badge--accent">Gin</li>
-              <li class="badge">TypeScript</li>
-              <li class="badge">JavaScript</li>
+        <div class="stack">
+          <div class="stack__group">
+            <h3 class="stack__label">Languages and backend</h3>
+            <ul class="stack__items">
+              <li class="tech tech--primary">
+                <svg class="tech__logo" style="--c:#00ADD8" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#go" /></svg>
+                <span class="tech__name">Go<small>Primary language</small></span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#008ECF" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#gin" /></svg>
+                <span class="tech__name">Gin</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#3178C6" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#typescript" /></svg>
+                <span class="tech__name">TypeScript</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#F7DF1E;--c-light:#D4B800" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#javascript" /></svg>
+                <span class="tech__name">JavaScript</span>
+              </li>
             </ul>
-          </article>
+          </div>
 
-          <article class="skill-tile reveal">
-            <h3><i class="ph ph-database" aria-hidden="true"></i> Databases</h3>
-            <ul class="badges">
-              <li class="badge badge--accent">MongoDB</li>
-              <li class="badge">Apache Doris</li>
-              <li class="badge">QuestDB</li>
+          <div class="stack__group">
+            <h3 class="stack__label">Data and messaging</h3>
+            <ul class="stack__items">
+              <li class="tech tech--primary">
+                <svg class="tech__logo" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#apachekafka" /></svg>
+                <span class="tech__name">Apache Kafka<small>Event streaming</small></span>
+              </li>
+              <li class="tech tech--primary">
+                <svg class="tech__logo" style="--c:#47A248" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#mongodb" /></svg>
+                <span class="tech__name">MongoDB<small>Primary database</small></span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#444FD9;--c-dark:#7C85F2" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#apachedoris" /></svg>
+                <span class="tech__name">Apache Doris</span>
+              </li>
+              <li class="tech">
+                <i class="ph ph-chart-line-up tech__logo" aria-hidden="true"></i>
+                <span class="tech__name">QuestDB</span>
+              </li>
+              <li class="tech">
+                <i class="ph ph-broadcast tech__logo" aria-hidden="true"></i>
+                <span class="tech__name">Server-Sent Events</span>
+              </li>
             </ul>
-          </article>
+          </div>
 
-          <article class="skill-tile skill-tile--pattern reveal">
-            <h3><i class="ph ph-flow-arrow" aria-hidden="true"></i> Messaging</h3>
-            <ul class="badges">
-              <li class="badge badge--accent">Apache Kafka</li>
-              <li class="badge">Server-Sent Events</li>
+          <div class="stack__group">
+            <h3 class="stack__label">Frontend</h3>
+            <ul class="stack__items">
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#61DAFB;--c-light:#149ECA" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#react" /></svg>
+                <span class="tech__name">React 19</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#nextdotjs" /></svg>
+                <span class="tech__name">Next.js</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#9135FF" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#vite" /></svg>
+                <span class="tech__name">Vite</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#06B6D4" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#tailwindcss" /></svg>
+                <span class="tech__name">Tailwind CSS</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#shadcnui" /></svg>
+                <span class="tech__name">shadcn/ui</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#0170FE;--c-dark:#3D8EFF" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#antdesign" /></svg>
+                <span class="tech__name">Ant Design</span>
+              </li>
             </ul>
-          </article>
+          </div>
 
-          <article class="skill-tile skill-tile--wide reveal">
-            <h3><i class="ph ph-browser" aria-hidden="true"></i> Frontend</h3>
-            <ul class="badges">
-              <li class="badge">React 19</li>
-              <li class="badge">Next.js</li>
-              <li class="badge">TypeScript</li>
-              <li class="badge">Vite</li>
-              <li class="badge">Tailwind CSS</li>
-              <li class="badge">shadcn/ui</li>
-              <li class="badge">Ant Design</li>
+          <div class="stack__group">
+            <h3 class="stack__label">Infrastructure</h3>
+            <ul class="stack__items">
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#E95420" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#ubuntu" /></svg>
+                <span class="tech__name">Ubuntu Linux</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#009639;--c-dark:#1DB954" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#nginx" /></svg>
+                <span class="tech__name">Nginx</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#F38020" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#cloudflare" /></svg>
+                <span class="tech__name">Cloudflare<small>DNS, Tunnel, R2</small></span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#vercel" /></svg>
+                <span class="tech__name">Vercel</span>
+              </li>
+              <li class="tech">
+                <i class="ph ph-terminal-window tech__logo" aria-hidden="true"></i>
+                <span class="tech__name">WinSCP</span>
+              </li>
             </ul>
-          </article>
+          </div>
 
-          <article class="skill-tile skill-tile--wide reveal">
-            <h3><i class="ph ph-cloud" aria-hidden="true"></i> Infrastructure</h3>
-            <ul class="badges">
-              <li class="badge">Linux (Ubuntu)</li>
-              <li class="badge">Nginx</li>
-              <li class="badge">Cloudflare DNS</li>
-              <li class="badge">Cloudflare Tunnel</li>
-              <li class="badge">Cloudflare R2</li>
-              <li class="badge">Vercel</li>
-              <li class="badge">WinSCP</li>
+          <div class="stack__group">
+            <h3 class="stack__label">Tools and workflow</h3>
+            <ul class="stack__items">
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#F03C2E" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#git" /></svg>
+                <span class="tech__name">Git</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#0052CC;--c-dark:#2684FF" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#bitbucket" /></svg>
+                <span class="tech__name">Bitbucket</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#0052CC;--c-dark:#2684FF" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#sourcetree" /></svg>
+                <span class="tech__name">Sourcetree</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#FF6C37" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#postman" /></svg>
+                <span class="tech__name">Postman</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#DD2C00;--c-dark:#FF7A1A" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#firebase" /></svg>
+                <span class="tech__name">Firebase</span>
+              </li>
+              <li class="tech">
+                <i class="ph ph-paper-plane-tilt tech__logo" aria-hidden="true"></i>
+                <span class="tech__name">SendGrid</span>
+              </li>
+              <li class="tech">
+                <svg class="tech__logo" style="--c:#0052CC;--c-dark:#2684FF" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#atlassian" /></svg>
+                <span class="tech__name">Atlassian</span>
+              </li>
+              <li class="tech">
+                <i class="ph ph-chat-teardrop-text tech__logo" aria-hidden="true"></i>
+                <span class="tech__name">Lark</span>
+              </li>
+              <li class="tech">
+                <i class="ph ph-slack-logo tech__logo" aria-hidden="true"></i>
+                <span class="tech__name">Slack</span>
+              </li>
+              <li class="tech">
+                <i class="ph ph-arrows-clockwise tech__logo" aria-hidden="true"></i>
+                <span class="tech__name">Agile / Scrum</span>
+              </li>
             </ul>
-          </article>
-
-          <article class="skill-tile skill-tile--full reveal">
-            <h3><i class="ph ph-wrench" aria-hidden="true"></i> Tools and ways of working</h3>
-            <ul class="badges">
-              <li class="badge">Git</li>
-              <li class="badge">Bitbucket</li>
-              <li class="badge">Sourcetree</li>
-              <li class="badge">Postman</li>
-              <li class="badge">Firebase</li>
-              <li class="badge">SendGrid</li>
-              <li class="badge">Atlassian</li>
-              <li class="badge">Lark</li>
-              <li class="badge">Slack</li>
-              <li class="badge">Agile / Scrum</li>
-            </ul>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -199,28 +293,13 @@
     <!-- Experience -->
     <section class="section experience" id="experience">
       <div class="container experience__grid">
-        <div class="experience__intro reveal">
-          <h2 class="section__title">Experience</h2>
-          <a class="btn btn--ghost" href="assets/Khor-Ze-Hung-Resume.pdf" download>
-            <i class="ph ph-download-simple" aria-hidden="true"></i> Download resume
-          </a>
-        </div>
+        <h2 class="section__title experience__title">Experience</h2>
 
         <ol class="timeline">
-          <li class="timeline__item reveal">
-            <p class="timeline__date">Dec 2025 - Present</p>
-            <h3 class="timeline__role">Founder and Developer</h3>
-            <p class="timeline__org">Renotech<span>Independent SaaS</span></p>
-            <ul class="timeline__points">
-              <li>Built a full stack quotation platform for renovation contractors with Next.js (App Router) and MongoDB.</li>
-              <li>Deployed on Vercel, with Cloudflare DNS and Cloudflare R2 for object storage.</li>
-            </ul>
-          </li>
-
-          <li class="timeline__item reveal">
-            <p class="timeline__date">Jun 2024 - Present</p>
+          <li class="timeline__item">
+            <p class="timeline__date">Jun 2024 to present</p>
             <h3 class="timeline__role">Backend Developer (Full Stack)</h3>
-            <p class="timeline__org">COS Great Trading<span>Kuala Lumpur, Malaysia</span></p>
+            <p class="timeline__org">COS Great Trading, Kuala Lumpur</p>
             <ul class="timeline__points">
               <li>Designed and built 6 Go microservices from scratch: KYC verification, leads, case management, gamification, questionnaire forms and centralised logging.</li>
               <li>Engineered a financial reporting pipeline combining scheduled batch repopulation with a real-time Kafka consumer and idempotent deduplication.</li>
@@ -230,105 +309,32 @@
             </ul>
           </li>
 
-          <li class="timeline__item reveal">
+          <li class="timeline__item">
+            <p class="timeline__date">Dec 2025 to present</p>
+            <h3 class="timeline__role">Founder and Developer</h3>
+            <p class="timeline__org">Renotech, independent SaaS</p>
+            <ul class="timeline__points">
+              <li>Built a full stack quotation platform for renovation contractors with Next.js (App Router) and MongoDB.</li>
+              <li>Deployed on Vercel, with Cloudflare DNS and Cloudflare R2 for object storage.</li>
+            </ul>
+          </li>
+
+          <li class="timeline__item">
             <p class="timeline__date">Graduated 2024</p>
             <h3 class="timeline__role">Bachelor of e-Business Technology and Management</h3>
-            <p class="timeline__org">YPC International College<span>in partnership with Liverpool John Moores University (UK)</span></p>
+            <p class="timeline__org">YPC International College, in partnership with Liverpool John Moores University (UK)</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section class="section projects" id="projects">
-      <div class="container">
-        <h2 class="section__title reveal">Selected projects</h2>
-        <p class="section__lead reveal">One product I run myself, and two systems I designed and shipped in production.</p>
-
-        <div class="projects__grid">
-          <!-- Featured: Renotech -->
-          <article class="project project--featured reveal">
-            <a class="project__media" href="https://renotech.space/" target="_blank" rel="noopener" aria-label="Open Renotech live site">
-              <img src="assets/renotech.webp" alt="Renotech landing page: Quote faster, win more jobs" width="1200" height="600" loading="lazy" decoding="async" />
-            </a>
-            <div class="project__body">
-              <h3 class="project__title">Renotech</h3>
-              <p class="project__desc">A SaaS platform that turns hours of manual quotation work for Malaysian renovation contractors into a 15-minute workflow. I built it end to end and run it in production.</p>
-              <ul class="tags" aria-label="Technologies">
-                <li>Next.js</li><li>TypeScript</li><li>MongoDB</li><li>Vercel</li><li>Cloudflare R2</li>
-              </ul>
-              <a class="btn btn--primary btn--sm" href="https://renotech.space/" target="_blank" rel="noopener">
-                Visit live site <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </article>
-
-          <!-- KYC -->
-          <article class="project reveal">
-            <div class="project__media project__media--diagram" role="img" aria-label="Flow: onboarding app calls the Go KYC service, which checks a liveness provider, saves results to MongoDB and publishes events to Kafka">
-              <div class="flow">
-                <div class="flow__row">
-                  <span class="node">Onboarding app</span>
-                  <i class="ph ph-arrow-right arrow" aria-hidden="true"></i>
-                  <span class="node node--accent">KYC service<small>Go + Gin</small></span>
-                  <i class="ph ph-arrows-left-right arrow" aria-hidden="true"></i>
-                  <span class="node">Liveness provider</span>
-                </div>
-                <i class="ph ph-arrow-down arrow" aria-hidden="true"></i>
-                <div class="flow__row flow__row--narrow">
-                  <span class="node node--store">MongoDB<small>records</small></span>
-                  <span class="node node--store">Kafka<small>status events</small></span>
-                </div>
-              </div>
-            </div>
-            <div class="project__body">
-              <h3 class="project__title">KYC Verification Service</h3>
-              <p class="project__desc">A Go microservice for customer onboarding on a multi-tenant broker platform. It integrates a third-party liveness detection service, stores verification records in MongoDB and publishes status changes to Kafka so downstream services react in real time.</p>
-              <ul class="tags" aria-label="Technologies">
-                <li>Go</li><li>Gin</li><li>MongoDB</li><li>Apache Kafka</li><li>Liveness API</li>
-              </ul>
-              <a class="btn btn--ghost btn--sm js-placeholder" href="#" data-msg="Write-up coming soon">
-                Case study <i class="ph ph-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </article>
-
-          <!-- Reporting -->
-          <article class="project reveal">
-            <div class="project__media project__media--diagram" role="img" aria-label="Flow: a scheduled batch job and a real-time Kafka consumer both feed an idempotent deduplication step that writes report data to MongoDB">
-              <div class="flow">
-                <div class="flow__row flow__row--narrow">
-                  <span class="node">Batch job<small>scheduled</small></span>
-                  <span class="node">Kafka consumer<small>real time</small></span>
-                </div>
-                <i class="ph ph-arrow-down arrow" aria-hidden="true"></i>
-                <div class="flow__row">
-                  <span class="node node--accent">Idempotent dedup<small>Go</small></span>
-                  <i class="ph ph-arrow-right arrow" aria-hidden="true"></i>
-                  <span class="node node--store">MongoDB<small>report data</small></span>
-                </div>
-              </div>
-            </div>
-            <div class="project__body">
-              <h3 class="project__title">Financial Reporting Pipeline</h3>
-              <p class="project__desc">A reporting pipeline in Go that pairs a scheduled batch repopulation service with a real-time Kafka consumer. Idempotent deduplication keeps figures correct when events are replayed or arrive twice, with MongoDB as the store.</p>
-              <ul class="tags" aria-label="Technologies">
-                <li>Go</li><li>Apache Kafka</li><li>MongoDB</li><li>Batch + Streaming</li>
-              </ul>
-              <a class="btn btn--ghost btn--sm js-placeholder" href="#" data-msg="Write-up coming soon">
-                Case study <i class="ph ph-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+    <!-- Projects: to be added later -->
 
     <!-- Contact -->
     <section class="section contact" id="contact">
-      <div class="container contact__inner reveal">
-        <h2 class="contact__title">Let's build something together.</h2>
-        <p class="contact__lead">Have a role or a project in mind? Send me an email and I'll get back to you.</p>
+      <div class="container contact__inner">
+        <h2 class="contact__title">Let's talk.</h2>
+        <p class="contact__lead">Have a role or a project in mind? Email me and I'll get back to you.</p>
 
         <div class="contact__email">
           <a href="mailto:khorzehung@gmail.com" class="contact__address">khorzehung@gmail.com</a>
@@ -339,9 +345,9 @@
         </div>
 
         <ul class="socials" aria-label="Social links">
-          <li><a href="https://github.com/KhorZeHung" target="_blank" rel="noopener" aria-label="GitHub"><i class="ph ph-github-logo" aria-hidden="true"></i><span>GitHub</span></a></li>
-          <li><a href="https://www.linkedin.com/in/zehung/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph ph-linkedin-logo" aria-hidden="true"></i><span>LinkedIn</span></a></li>
-          <li><a href="mailto:khorzehung@gmail.com" aria-label="Email"><i class="ph ph-envelope-simple" aria-hidden="true"></i><span>Email</span></a></li>
+          <li><a href="https://github.com/KhorZeHung" target="_blank" rel="noopener"><i class="ph ph-github-logo" aria-hidden="true"></i>GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/zehung/" target="_blank" rel="noopener"><i class="ph ph-linkedin-logo" aria-hidden="true"></i>LinkedIn</a></li>
+          <li><a href="mailto:khorzehung@gmail.com"><i class="ph ph-envelope-simple" aria-hidden="true"></i>Email</a></li>
         </ul>
       </div>
     </section>

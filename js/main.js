@@ -2,8 +2,6 @@
   "use strict";
 
   var root = document.documentElement;
-  root.classList.add("js");
-
   var nav = document.querySelector(".nav");
   var navToggle = document.getElementById("nav-toggle");
   var navLinks = document.getElementById("nav-links");
@@ -16,7 +14,7 @@
     themeToggle.setAttribute("aria-label", "Switch to " + next + " theme");
     themeToggle.innerHTML = '<i class="ph ' + (theme === "dark" ? "ph-sun" : "ph-moon") + '" aria-hidden="true"></i>';
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", theme === "dark" ? "#0a0f1a" : "#f6f8fb");
+    if (meta) meta.setAttribute("content", theme === "dark" ? "#0e1420" : "#f3f6f9");
   }
 
   applyTheme(root.dataset.theme === "light" ? "light" : "dark");
@@ -54,12 +52,33 @@
     if (mq.matches) setMenu(false);
   });
 
-  if (!("IntersectionObserver" in window)) {
-    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("is-visible"); });
-    return;
-  }
+  /* ---------- Copy email ---------- */
+  var copyBtn = document.getElementById("copy-email");
+  var copyStatus = document.getElementById("copy-status");
+  copyBtn.addEventListener("click", function () {
+    var email = copyBtn.dataset.email;
+    if (!navigator.clipboard || !window.isSecureContext) {
+      window.location.href = "mailto:" + email;
+      return;
+    }
+    navigator.clipboard.writeText(email).then(function () {
+      copyStatus.textContent = "Copied";
+      copyBtn.innerHTML = '<i class="ph ph-check" aria-hidden="true"></i>';
+      setTimeout(function () {
+        copyStatus.textContent = "";
+        copyBtn.innerHTML = '<i class="ph ph-copy" aria-hidden="true"></i>';
+      }, 2000);
+    }, function () {
+      window.location.href = "mailto:" + email;
+    });
+  });
 
-  /* ---------- Nav background once the hero top leaves the viewport ---------- */
+  var year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+
+  if (!("IntersectionObserver" in window)) return;
+
+  /* ---------- Nav background once the page scrolls past the top ---------- */
   var sentinel = document.createElement("div");
   sentinel.setAttribute("aria-hidden", "true");
   sentinel.style.cssText = "position:absolute;top:0;left:0;width:1px;height:24px;pointer-events:none;";
@@ -68,31 +87,6 @@
   new IntersectionObserver(function (entries) {
     nav.classList.toggle("is-scrolled", !entries[0].isIntersecting);
   }).observe(sentinel);
-
-  /* ---------- Reveal on scroll, staggered within each section ---------- */
-  document.querySelectorAll("section").forEach(function (section) {
-    section.querySelectorAll(".reveal").forEach(function (el, i) {
-      el.style.setProperty("--i", Math.min(i, 6));
-    });
-  });
-
-  var revealFired = false;
-  var revealObserver = new IntersectionObserver(function (entries) {
-    revealFired = true;
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
-
-  document.querySelectorAll(".reveal").forEach(function (el) { revealObserver.observe(el); });
-
-  // Safety net: never leave content hidden if the observer doesn't report.
-  setTimeout(function () {
-    if (!revealFired) document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("is-visible"); });
-  }, 2500);
 
   /* ---------- Highlight the nav link of the section in view ---------- */
   var linkFor = {};
@@ -104,63 +98,13 @@
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
       Object.keys(linkFor).forEach(function (id) {
-        linkFor[id].classList.toggle("is-active", id === entry.target.id);
-        if (id === entry.target.id) linkFor[id].setAttribute("aria-current", "true");
+        var active = id === entry.target.id;
+        linkFor[id].classList.toggle("is-active", active);
+        if (active) linkFor[id].setAttribute("aria-current", "true");
         else linkFor[id].removeAttribute("aria-current");
       });
     });
   }, { rootMargin: "-45% 0px -50% 0px" });
 
   document.querySelectorAll("main section[id]").forEach(function (s) { sectionObserver.observe(s); });
-})();
-
-/* ---------- Small helpers that don't depend on IntersectionObserver ---------- */
-(function () {
-  "use strict";
-
-  var year = document.getElementById("year");
-  if (year) year.textContent = new Date().getFullYear();
-
-  var toast = document.createElement("div");
-  toast.className = "toast";
-  toast.setAttribute("role", "status");
-  toast.setAttribute("aria-live", "polite");
-  document.body.appendChild(toast);
-  var toastTimer;
-
-  function showToast(message) {
-    toast.textContent = message;
-    toast.classList.add("is-visible");
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toast.classList.remove("is-visible"); }, 2200);
-  }
-
-  // Placeholder buttons: swap the href for a real link when a write-up exists.
-  document.querySelectorAll(".js-placeholder").forEach(function (link) {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      showToast(link.dataset.msg || "Coming soon");
-    });
-  });
-
-  var copyBtn = document.getElementById("copy-email");
-  var copyStatus = document.getElementById("copy-status");
-  if (copyBtn) {
-    copyBtn.addEventListener("click", function () {
-      var email = copyBtn.dataset.email;
-      var done = function () {
-        copyStatus.textContent = "Copied to clipboard";
-        copyBtn.innerHTML = '<i class="ph ph-check" aria-hidden="true"></i>';
-        setTimeout(function () {
-          copyStatus.textContent = "";
-          copyBtn.innerHTML = '<i class="ph ph-copy" aria-hidden="true"></i>';
-        }, 2000);
-      };
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(email).then(done, function () { window.location.href = "mailto:" + email; });
-      } else {
-        window.location.href = "mailto:" + email;
-      }
-    });
-  }
 })();
