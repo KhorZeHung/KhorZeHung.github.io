@@ -93,6 +93,19 @@
             <a class="btn btn--line" href="#about">About me</a>
           </div>
         </div>
+
+        <!-- Core stack as floating logo tiles (decorative; the Skills section lists them properly).
+             --x/--y: tile centre, --s: size, --k: load order, --d: parallax depth, --t: bob period -->
+        <div class="float-stack" aria-hidden="true">
+          <span class="float-tile" style="--x:50%;--y:9%;--s:var(--tile-l);--k:0;--d:1;--t:6.2s"><svg class="tech__logo" style="--c:#00ADD8" fill="currentColor"><use href="assets/tech-icons.svg#go" /></svg></span>
+          <span class="float-tile" style="--x:19%;--y:28%;--s:var(--tile-l);--k:1;--d:1;--t:7.1s"><svg class="tech__logo" fill="currentColor"><use href="assets/tech-icons.svg#apachekafka" /></svg></span>
+          <span class="float-tile" style="--x:87%;--y:27%;--s:var(--tile-m);--k:2;--d:2;--t:5.4s"><svg class="tech__logo" style="--c:#61DAFB;--c-light:#149ECA" fill="currentColor"><use href="assets/tech-icons.svg#react" /></svg></span>
+          <span class="float-tile" style="--x:54%;--y:47%;--s:var(--tile-l);--k:3;--d:1;--t:6.6s"><svg class="tech__logo" style="--c:#47A248" fill="currentColor"><use href="assets/tech-icons.svg#mongodb" /></svg></span>
+          <span class="float-tile" style="--x:15%;--y:67%;--s:var(--tile-m);--k:4;--d:2;--t:5.9s"><svg class="tech__logo" style="--c:#3178C6" fill="currentColor"><use href="assets/tech-icons.svg#typescript" /></svg></span>
+          <span class="float-tile" style="--x:88%;--y:63%;--s:var(--tile-m);--k:5;--d:2;--t:7.4s"><svg class="tech__logo" fill="currentColor"><use href="assets/tech-icons.svg#nextdotjs" /></svg></span>
+          <span class="float-tile" style="--x:60%;--y:86%;--s:var(--tile-m);--k:6;--d:2;--t:6.0s"><svg class="tech__logo" style="--c:#F38020" fill="currentColor"><use href="assets/tech-icons.svg#cloudflare" /></svg></span>
+          <span class="float-tile" style="--x:24%;--y:93%;--s:var(--tile-s);--k:7;--d:3;--t:5.2s"><svg class="tech__logo" style="--c:#009639;--c-dark:#1DB954" fill="currentColor"><use href="assets/tech-icons.svg#nginx" /></svg></span>
+        </div>
       </div>
     </section>
 
