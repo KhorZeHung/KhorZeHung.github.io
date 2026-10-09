@@ -253,21 +253,49 @@ p { text-wrap: pretty; }
   aspect-ratio: 1 / 1.08;
   transform: translateY(-50%);
 }
-.float-tile {
+/* Each logo is a draggable item: the tile is the handle, the skill name sits
+   under it. The item carries the scroll parallax (transform, filter); its inline
+   translate holds the drag offset, so the two never fight. */
+.float-item {
   position: absolute;
   left: var(--x);
   top: var(--y);
   width: var(--s);
   height: var(--s);
   margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+}
+.float-item.is-dragging { cursor: grabbing; }
+.float-tile {
+  position: absolute;
+  inset: 0;
   display: grid;
   place-items: center;
   border-radius: 24px;
   border: 1px solid var(--rule);
   background: linear-gradient(160deg, color-mix(in srgb, var(--panel) 94%, #fff), var(--panel));
   box-shadow: var(--shadow);
+  transition: border-color 0.2s ease;
 }
-.float-tile .tech__logo { width: 46%; height: 46%; }
+.float-item:hover .float-tile,
+.float-item.is-dragging .float-tile { border-color: var(--accent); }
+.float-item:focus-visible .float-tile { outline: 2px solid var(--accent); outline-offset: 4px; }
+.float-tile .tech__logo { width: 46%; height: 46%; pointer-events: none; }
+.float-label {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-2);
+  pointer-events: none;
+}
 
 .hero__hello {
   font-size: clamp(1.05rem, 1.6vw, 1.3rem);
@@ -664,15 +692,12 @@ i.tech__logo {
       animation-range: exit 25% exit 85%;
     }
 
-    /* Floating tiles drift up at different speeds and blur as the hero leaves */
-    .float-tile {
-      animation:
-        tile-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both,
-        bob var(--t, 6s) ease-in-out infinite alternate,
-        tile-parallax linear both;
-      animation-delay: calc(var(--k, 0) * 90ms + 350ms), calc(var(--k, 0) * -0.9s), 0s;
-      animation-timeline: auto, auto, --hero;
-      animation-range: normal, normal, exit 0% exit 80%;
+    /* Floating items drift up at different speeds and blur as the hero leaves.
+       Transform and filter live on the item; the drag uses translate, so both compose. */
+    .float-item {
+      animation: tile-parallax linear both;
+      animation-timeline: --hero;
+      animation-range: exit 0% exit 80%;
     }
 
     /* About photo un-blurs and settles as it enters */

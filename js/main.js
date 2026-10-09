@@ -108,6 +108,69 @@
 
   document.querySelectorAll("main section[id]").forEach(function (s) { sectionObserver.observe(s); });
 
+  /* ---------- Hero: draggable logo tiles ----------
+     Drag a tile within the stack, or focus it and use the arrow keys (Shift for bigger steps).
+     Moves are a translate offset, so the bob and parallax animations keep running.
+     Positions reset on reload. Runs under reduced motion too: it is the visitor's own action. */
+  var floatStack = document.querySelector(".float-stack");
+  if (floatStack) {
+    var LABEL_ROOM = 40; /* px kept clear under a tile for its name */
+    var KEY_STEPS = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] };
+    var topZ = 2; /* the tile you last touched sits on top of the others */
+
+    floatStack.querySelectorAll(".float-item").forEach(function (item) {
+      var offset = { x: 0, y: 0 };
+      var drag = null;
+
+      /* Keep the tile inside the stack box, label included. */
+      function clamp(x, y) {
+        var W = floatStack.clientWidth, H = floatStack.clientHeight;
+        var half = item.offsetWidth / 2;
+        var baseX = parseFloat(item.dataset.x) / 100 * W;
+        var baseY = parseFloat(item.dataset.y) / 100 * H;
+        return {
+          x: Math.min(Math.max(x, half - baseX), W - half - baseX),
+          y: Math.min(Math.max(y, half - baseY), H - half - LABEL_ROOM - baseY)
+        };
+      }
+
+      function move(x, y) {
+        offset = clamp(x, y);
+        item.style.translate = offset.x + "px " + offset.y + "px";
+      }
+
+      item.addEventListener("pointerdown", function (e) {
+        if (e.button !== 0) return;
+        drag = { id: e.pointerId, sx: e.clientX, sy: e.clientY, ox: offset.x, oy: offset.y };
+        item.setPointerCapture(e.pointerId);
+        item.classList.add("is-dragging");
+        item.style.zIndex = ++topZ;
+        item.focus({ preventScroll: true });
+        e.preventDefault();
+      });
+      item.addEventListener("pointermove", function (e) {
+        if (!drag || e.pointerId !== drag.id) return;
+        move(drag.ox + e.clientX - drag.sx, drag.oy + e.clientY - drag.sy);
+      });
+
+      function endDrag(e) {
+        if (!drag || e.pointerId !== drag.id) return;
+        drag = null;
+        item.classList.remove("is-dragging");
+      }
+      item.addEventListener("pointerup", endDrag);
+      item.addEventListener("pointercancel", endDrag);
+
+      item.addEventListener("keydown", function (e) {
+        var dir = KEY_STEPS[e.key];
+        if (!dir) return;
+        e.preventDefault();
+        var step = e.shiftKey ? 24 : 8;
+        move(offset.x + dir[0] * step, offset.y + dir[1] * step);
+      });
+    });
+  }
+
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   /* ---------- About: stats count up when they come into view ---------- */
