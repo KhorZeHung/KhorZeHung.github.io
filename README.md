@@ -9,8 +9,8 @@ Plain HTML, CSS and JavaScript. No build step, no dependencies to install.
 
 ```
 index.html            Single page: hero, about, skills, experience, contact
-css/style.css         All styles (theme tokens at the top, dark by default)
-js/main.js            Theme toggle, mobile menu, active nav, copy email
+css/style.css         All styles (colour tokens at the top, dark by default)
+js/main.js            Copy email, draggable hero logo tiles, stat count-up
 assets/               Profile photo, tech logo sprite, resume PDF, favicon, OG image
 robots.txt, sitemap.xml
 ```
@@ -30,5 +30,5 @@ Then open http://localhost:5500.
   Use one with `<svg class="tech__logo" style="--c:#HEX" fill="currentColor"><use href="assets/tech-icons.svg#slug" /></svg>`.
   Omit `--c` for monochrome brands so they follow the theme text color.
 - **Projects**: there is a `<!-- Projects: to be added later -->` marker in `index.html` between Experience and Contact.
-  Add a `<section id="projects">` there and a matching `<a href="#projects">` in the nav.
+  Add a `<section id="projects">` there.
 - **Resume**: replace `assets/Khor-Ze-Hung-Resume.pdf` (keep the filename, or update the two links in `index.html`).

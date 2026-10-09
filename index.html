@@ -19,19 +19,12 @@
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
-  <!-- Apply saved theme before paint to avoid a flash -->
-  <script>
-    try {
-      var t = localStorage.getItem("theme");
-      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
-    } catch (e) {}
-  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
-  <link rel="stylesheet" href="css/style.css?v=4" />
+  <link rel="stylesheet" href="css/style.css?v=8" />
 
   <script type="application/ld+json">
   {
@@ -51,34 +44,6 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="nav">
-    <div class="container nav__inner">
-      <a class="nav__brand" href="#hero" aria-label="Khor Ze Hung, back to top">
-        <span class="nav__mark" aria-hidden="true"><i class="ph ph-house"></i></span>
-        <span class="nav__name">Khor Ze Hung</span>
-      </a>
-
-      <nav class="nav__links" id="nav-links" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-        <a class="btn btn--line btn--sm nav__resume" href="assets/Khor-Ze-Hung-Resume.pdf" download>
-          <i class="ph ph-download-simple" aria-hidden="true"></i> Resume
-        </a>
-      </nav>
-
-      <div class="nav__actions">
-        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to light theme">
-          <i class="ph ph-sun" aria-hidden="true"></i>
-        </button>
-        <button class="icon-btn nav__burger" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-          <i class="ph ph-list" aria-hidden="true"></i>
-        </button>
-      </div>
-    </div>
-  </header>
-
   <main id="main">
     <!-- Hero -->
     <section class="hero" id="hero">
@@ -97,35 +62,35 @@
         <!-- Floating logo tiles: drag any tile, or focus it and use the arrow keys.
              Each label names its skill. data-x/data-y are the tile centre as % of the stack. -->
         <div class="float-stack">
-          <div class="float-item" role="button" tabindex="0" aria-label="Go, drag to move" data-x="50" data-y="6" style="--x:50%;--y:6%;--s:var(--tile-l);--k:0;--d:1;--t:6.2s">
+          <div class="float-item" role="button" tabindex="0" aria-label="Go, drag to move" data-x="48.8" data-y="15.3" style="--x:48.8%;--y:15.3%;--s:var(--tile-l);--k:0;--d:1;--t:6.2s">
             <span class="float-tile"><svg class="tech__logo" style="--c:#00ADD8" fill="currentColor"><use href="assets/tech-icons.svg#go" /></svg></span>
             <span class="float-label">Go</span>
           </div>
-          <div class="float-item" role="button" tabindex="0" aria-label="Apache Kafka, drag to move" data-x="19" data-y="26" style="--x:19%;--y:26%;--s:var(--tile-l);--k:1;--d:1;--t:7.1s">
+          <div class="float-item" role="button" tabindex="0" aria-label="Apache Kafka, drag to move" data-x="13.2" data-y="12.7" style="--x:13.2%;--y:12.7%;--s:var(--tile-l);--k:1;--d:1;--t:7.1s">
             <span class="float-tile"><svg class="tech__logo" fill="currentColor"><use href="assets/tech-icons.svg#apachekafka" /></svg></span>
             <span class="float-label">Apache Kafka</span>
           </div>
-          <div class="float-item" role="button" tabindex="0" aria-label="React 19, drag to move" data-x="87" data-y="25" style="--x:87%;--y:25%;--s:var(--tile-m);--k:2;--d:2;--t:5.4s">
+          <div class="float-item" role="button" tabindex="0" aria-label="React 19, drag to move" data-x="88.0" data-y="8.8" style="--x:88.0%;--y:8.8%;--s:var(--tile-m);--k:2;--d:2;--t:5.4s">
             <span class="float-tile"><svg class="tech__logo" style="--c:#61DAFB;--c-light:#149ECA" fill="currentColor"><use href="assets/tech-icons.svg#react" /></svg></span>
             <span class="float-label">React 19</span>
           </div>
-          <div class="float-item" role="button" tabindex="0" aria-label="MongoDB, drag to move" data-x="54" data-y="45" style="--x:54%;--y:45%;--s:var(--tile-l);--k:3;--d:1;--t:6.6s">
+          <div class="float-item" role="button" tabindex="0" aria-label="MongoDB, drag to move" data-x="82.6" data-y="44.2" style="--x:82.6%;--y:44.2%;--s:var(--tile-l);--k:3;--d:1;--t:6.6s">
             <span class="float-tile"><svg class="tech__logo" style="--c:#47A248" fill="currentColor"><use href="assets/tech-icons.svg#mongodb" /></svg></span>
             <span class="float-label">MongoDB</span>
           </div>
-          <div class="float-item" role="button" tabindex="0" aria-label="TypeScript, drag to move" data-x="15" data-y="63" style="--x:15%;--y:63%;--s:var(--tile-m);--k:4;--d:2;--t:5.9s">
+          <div class="float-item" role="button" tabindex="0" aria-label="TypeScript, drag to move" data-x="10.4" data-y="46.1" style="--x:10.4%;--y:46.1%;--s:var(--tile-m);--k:4;--d:2;--t:5.9s">
             <span class="float-tile"><svg class="tech__logo" style="--c:#3178C6" fill="currentColor"><use href="assets/tech-icons.svg#typescript" /></svg></span>
             <span class="float-label">TypeScript</span>
           </div>
-          <div class="float-item" role="button" tabindex="0" aria-label="Next.js, drag to move" data-x="88" data-y="62" style="--x:88%;--y:62%;--s:var(--tile-m);--k:5;--d:2;--t:7.4s">
+          <div class="float-item" role="button" tabindex="0" aria-label="Next.js, drag to move" data-x="55.1" data-y="81.8" style="--x:55.1%;--y:81.8%;--s:var(--tile-m);--k:5;--d:2;--t:7.4s">
             <span class="float-tile"><svg class="tech__logo" fill="currentColor"><use href="assets/tech-icons.svg#nextdotjs" /></svg></span>
             <span class="float-label">Next.js</span>
           </div>
-          <div class="float-item" role="button" tabindex="0" aria-label="Cloudflare, drag to move" data-x="60" data-y="82" style="--x:60%;--y:82%;--s:var(--tile-m);--k:6;--d:2;--t:6.0s">
+          <div class="float-item" role="button" tabindex="0" aria-label="Cloudflare, drag to move" data-x="88.7" data-y="76.9" style="--x:88.7%;--y:76.9%;--s:var(--tile-m);--k:6;--d:2;--t:6.0s">
             <span class="float-tile"><svg class="tech__logo" style="--c:#F38020" fill="currentColor"><use href="assets/tech-icons.svg#cloudflare" /></svg></span>
             <span class="float-label">Cloudflare</span>
           </div>
-          <div class="float-item" role="button" tabindex="0" aria-label="Nginx, drag to move" data-x="24" data-y="84" style="--x:24%;--y:84%;--s:var(--tile-s);--k:7;--d:3;--t:5.2s">
+          <div class="float-item" role="button" tabindex="0" aria-label="Nginx, drag to move" data-x="10.6" data-y="84.3" style="--x:10.6%;--y:84.3%;--s:var(--tile-s);--k:7;--d:3;--t:5.2s">
             <span class="float-tile"><svg class="tech__logo" style="--c:#009639;--c-dark:#1DB954" fill="currentColor"><use href="assets/tech-icons.svg#nginx" /></svg></span>
             <span class="float-label">Nginx</span>
           </div>
@@ -341,6 +306,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=4" defer></script>
+  <script src="js/main.js?v=7" defer></script>
 </body>
 </html>
