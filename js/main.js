@@ -7,6 +7,59 @@
   var navLinks = document.getElementById("nav-links");
   var themeToggle = document.getElementById("theme-toggle");
 
+  /* ---------- Scrollbar: a slim thumb drawn over the page. It follows the scroll position, can be dragged,
+     and is shown while the page scrolls (CSS fades it out once the page is still). ---------- */
+  var scrollThumb = document.getElementById("scroll-thumb");
+  var scrollTimer;
+  var MIN_THUMB = 56;
+
+  function layoutScrollThumb() {
+    var viewH = window.innerHeight;
+    var maxScroll = root.scrollHeight - viewH;
+    if (maxScroll <= 0) {
+      scrollThumb.classList.add("is-empty");
+      return;
+    }
+    scrollThumb.classList.remove("is-empty");
+    var h = Math.max(MIN_THUMB, Math.round(viewH * viewH / root.scrollHeight));
+    var y = Math.round((window.scrollY / maxScroll) * (viewH - h));
+    scrollThumb.style.height = h + "px";
+    scrollThumb.style.transform = "translate3d(0," + y + "px,0)";
+  }
+
+  window.addEventListener("scroll", function () {
+    layoutScrollThumb();
+    root.classList.add("is-scrolling");
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function () {
+      root.classList.remove("is-scrolling");
+    }, 1200);
+  }, { passive: true });
+  window.addEventListener("resize", layoutScrollThumb);
+  if ("ResizeObserver" in window) new ResizeObserver(layoutScrollThumb).observe(document.body);
+  layoutScrollThumb();
+
+  var dragStart = null;
+  scrollThumb.addEventListener("pointerdown", function (e) {
+    if (e.button !== 0) return;
+    dragStart = { y: e.clientY, scrollY: window.scrollY };
+    scrollThumb.setPointerCapture(e.pointerId);
+    scrollThumb.classList.add("is-dragging");
+    e.preventDefault();
+  });
+  scrollThumb.addEventListener("pointermove", function (e) {
+    if (!dragStart) return;
+    var maxScroll = root.scrollHeight - window.innerHeight;
+    var travel = window.innerHeight - scrollThumb.offsetHeight;
+    window.scrollTo({ top: dragStart.scrollY + (e.clientY - dragStart.y) * (maxScroll / travel), behavior: "instant" });
+  });
+  function endScrollDrag() {
+    dragStart = null;
+    scrollThumb.classList.remove("is-dragging");
+  }
+  scrollThumb.addEventListener("pointerup", endScrollDrag);
+  scrollThumb.addEventListener("pointercancel", endScrollDrag);
+
   /* ---------- Theme toggle (dark by default, remembered per visitor) ---------- */
   function applyTheme(theme) {
     root.dataset.theme = theme;
@@ -31,6 +84,8 @@
     navToggle.setAttribute("aria-expanded", String(open));
     navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     navToggle.innerHTML = '<i class="ph ' + (open ? "ph-x" : "ph-list") + '" aria-hidden="true"></i>';
+    if (open) showNav();
+    else scheduleNavHide();
   }
 
   navToggle.addEventListener("click", function () {
@@ -52,24 +107,92 @@
     if (mq.matches) setMenu(false);
   });
 
-  /* ---------- Copy email ---------- */
+  /* ---------- Nav: shown at the top of the page and while scrolling; once the page is still it slides away.
+     Hovering or focusing it, or having the mobile menu open, keeps it in place. ---------- */
+  var navHideTimer;
+  var navHovered = false;
+
+  function showNav() {
+    clearTimeout(navHideTimer);
+    nav.classList.remove("is-hidden");
+  }
+
+  function scheduleNavHide() {
+    clearTimeout(navHideTimer);
+    navHideTimer = setTimeout(function () {
+      var atTop = window.scrollY < 40;
+      var busy = navHovered || pointerAtTopEdge || nav.classList.contains("is-open") || nav.contains(document.activeElement);
+      if (!atTop && !busy) nav.classList.add("is-hidden");
+    }, 1400);
+  }
+
+  window.addEventListener("scroll", function () {
+    showNav();
+    scheduleNavHide();
+  }, { passive: true });
+  nav.addEventListener("mouseenter", function () {
+    navHovered = true;
+    showNav();
+  });
+  nav.addEventListener("mouseleave", function () {
+    navHovered = false;
+    scheduleNavHide();
+  });
+  nav.addEventListener("focusin", showNav);
+  nav.addEventListener("focusout", scheduleNavHide);
+  /* A hidden nav can't be hovered, so a mouse in the top edge of the window brings it back and keeps it
+     there while it stays in that band */
+  var pointerAtTopEdge = false;
+  document.addEventListener("pointermove", function (e) {
+    if (e.pointerType !== "mouse") return;
+    if (e.clientY < 28) {
+      pointerAtTopEdge = true;
+      showNav();
+    } else if (pointerAtTopEdge) {
+      pointerAtTopEdge = false;
+      scheduleNavHide();
+    }
+  }, { passive: true });
+  document.documentElement.addEventListener("mouseleave", function () {
+    pointerAtTopEdge = false;
+    scheduleNavHide();
+  });
+
+  /* ---------- Copy email: clicking the address copies it and shows a short confirmation ---------- */
   var copyBtn = document.getElementById("copy-email");
   var copyStatus = document.getElementById("copy-status");
+  var copyTimer;
+
+  function flashCopyStatus(message) {
+    copyStatus.textContent = message;
+    copyStatus.classList.add("is-visible");
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(function () {
+      copyStatus.classList.remove("is-visible");
+    }, 2200);
+  }
+
+  /* Fallback for pages without the Clipboard API (e.g. plain http): copy through a hidden field */
+  function legacyCopy(text) {
+    var field = document.createElement("textarea");
+    field.value = text;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.appendChild(field);
+    field.select();
+    var ok = document.execCommand("copy");
+    document.body.removeChild(field);
+    return ok;
+  }
+
   copyBtn.addEventListener("click", function () {
     var email = copyBtn.dataset.email;
-    if (!navigator.clipboard || !window.isSecureContext) {
-      window.location.href = "mailto:" + email;
-      return;
-    }
-    navigator.clipboard.writeText(email).then(function () {
-      copyStatus.textContent = "Copied";
-      copyBtn.innerHTML = '<i class="ph ph-check" aria-hidden="true"></i>';
-      setTimeout(function () {
-        copyStatus.textContent = "";
-        copyBtn.innerHTML = '<i class="ph ph-copy" aria-hidden="true"></i>';
-      }, 2000);
-    }, function () {
-      window.location.href = "mailto:" + email;
+    var copied = navigator.clipboard && window.isSecureContext
+      ? navigator.clipboard.writeText(email).then(function () { return true; }, function () { return false; })
+      : Promise.resolve(legacyCopy(email));
+    copied.then(function (ok) {
+      flashCopyStatus(ok ? "Email copied to clipboard" : "Could not copy. Please try again.");
     });
   });
 
@@ -199,48 +322,14 @@
     window.addEventListener("resize", resetAll);
   }
 
-  /* ---------- Skills: each skill is a button; selecting one shows where it was used ----------
-     The text for each skill lives in SKILL_DETAILS below. Click a selected skill again to clear it. */
-  var SKILL_DETAILS = {
-    "go": "Primary language. I built six Go microservices at COS Great Trading: KYC verification, leads, case management, gamification, questionnaire forms and centralised logging.",
-    "typescript": "Frontend features in React 19 and TypeScript at COS Great Trading.",
-    "javascript": "Listed under backend skills in my resume.",
-    "apache-kafka": "Built the real-time Kafka consumer for the financial reporting pipeline, and Kafka event propagation across services at COS Great Trading.",
-    "mongodb": "Primary database for Renotech.",
-    "apache-doris": "Part of my day-to-day data stack at COS Great Trading, alongside Kafka, MongoDB and QuestDB.",
-    "questdb": "Part of my day-to-day data stack at COS Great Trading, alongside Kafka, MongoDB and Apache Doris.",
-    "react-19": "Built frontend features in React 19 at COS Great Trading.",
-    "nextjs": "Built Renotech with Next.js (App Router).",
-    "tailwind-css": "Listed in my frontend skills, alongside shadcn/ui and Ant Design.",
-    "ant-design": "Listed in my frontend skills, alongside Tailwind CSS and shadcn/ui.",
-    "ubuntu-linux": "Linux (Ubuntu) is part of my infrastructure toolkit.",
-    "nginx": "Listed under infrastructure, alongside Cloudflare and Linux.",
-    "cloudflare": "Configured Cloudflare DNS and R2 object storage for Renotech, and use Cloudflare Tunnel.",
-    "vercel": "Renotech is deployed on Vercel.",
-    "git": "Used for version control across my projects.",
-    "bitbucket": "Listed under tools, next to Git.",
-    "postman": "Kept Postman collections as the API contract for frontend developers at COS Great Trading.",
-    "slack": "Listed under tools for team communication."
-  };
-  var DEFAULT_SKILL_TEXT = "Select a skill to see where I've used it.";
-  var skillButtons = document.querySelectorAll("button.tech[data-skill]");
-  var skillTitle = document.getElementById("skill-detail-title");
-  var skillText = document.getElementById("skill-detail-text");
-
-  function selectSkill(button) {
-    var wasSelected = button.getAttribute("aria-pressed") === "true";
-    skillButtons.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
-    if (wasSelected) {
-      skillTitle.textContent = "";
-      skillText.textContent = DEFAULT_SKILL_TEXT;
-      return;
-    }
-    button.setAttribute("aria-pressed", "true");
-    skillTitle.textContent = button.dataset.name;
-    skillText.textContent = SKILL_DETAILS[button.dataset.skill] || DEFAULT_SKILL_TEXT;
-  }
+  /* ---------- Skills: clicking a skill highlights it; clicking it again clears the highlight ---------- */
+  var skillButtons = document.querySelectorAll("button.tech");
   skillButtons.forEach(function (button) {
-    button.addEventListener("click", function () { selectSkill(button); });
+    button.addEventListener("click", function () {
+      var wasSelected = button.getAttribute("aria-pressed") === "true";
+      skillButtons.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+      button.setAttribute("aria-pressed", String(!wasSelected));
+    });
   });
 
   /* ---------- Back to top: shown once the hero has scrolled out of view ---------- */

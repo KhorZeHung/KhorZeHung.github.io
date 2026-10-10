@@ -62,6 +62,50 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h) + 8px);
   -webkit-text-size-adjust: 100%;
+  background-color: var(--bg);
+}
+
+/* Scrollbar: the native bar is hidden and a slim gradient thumb is drawn over the page (see js/main.js),
+   so the hero gradient runs to the screen edge and there is no track. The thumb rises while the page
+   scrolls, glows and widens under the pointer, and fades out slowly once the page is still. */
+html { scrollbar-width: none; }
+::-webkit-scrollbar { display: none; }
+.scroll-thumb {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 39;
+  width: 18px;
+  height: 56px;
+  opacity: 0;
+  cursor: grab;
+  touch-action: pan-y;
+  transition: opacity 2.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.scroll-thumb::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 6px;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent-text), var(--accent));
+  box-shadow: 0 0 14px -2px color-mix(in srgb, var(--accent) 60%, transparent);
+  transition: width 0.9s var(--ease), right 0.9s var(--ease);
+}
+html.is-scrolling .scroll-thumb { opacity: 1; transition-duration: 0.7s; }
+html.is-scrolling .scroll-thumb::before { width: 4px; right: 5px; }
+.scroll-thumb:hover,
+.scroll-thumb.is-dragging { opacity: 1; transition-duration: 0.5s; cursor: grabbing; }
+.scroll-thumb:hover::before,
+.scroll-thumb.is-dragging::before { width: 6px; right: 4px; }
+.scroll-thumb.is-dragging { cursor: grabbing; }
+.scroll-thumb.is-empty { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .nav,
+  .scroll-thumb,
+  .scroll-thumb::before { transition: none; }
 }
 
 body {
@@ -169,13 +213,16 @@ p { text-wrap: pretty; }
   top: 8px;
   left: 12px;
   right: 12px;
-  max-width: 1080px;
+  width: fit-content;
   margin: 0 auto;
   z-index: 50;
   height: 52px;
   border-radius: 999px;
   isolation: isolate;
+  transition: transform 0.7s var(--ease), opacity 0.5s ease;
 }
+/* Hidden once the page is still and not at the top; js/main.js brings it back on scroll, hover or focus */
+.nav.is-hidden { transform: translateY(calc(-100% - 12px)); opacity: 0; pointer-events: none; }
 /* The frosted pill sits on a pseudo-element, so the fixed mobile menu is not
    trapped inside a backdrop-filtered box. */
 .nav::before {
@@ -192,11 +239,13 @@ p { text-wrap: pretty; }
 }
 
 .nav__inner {
+  width: auto;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 12px;
+  padding: 0 6px 0 8px;
 }
 
 
@@ -220,7 +269,6 @@ p { text-wrap: pretty; }
   height: 2px;
   background: var(--accent);
 }
-.nav__resume { margin-left: 12px; }
 
 .nav__actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 .nav__burger { display: none; }
@@ -537,19 +585,9 @@ button.tech {
 }
 button.tech[aria-pressed="true"] { background: var(--accent-wash); border-color: var(--accent); }
 
-.skill-detail {
-  margin-top: 32px;
-  padding: 18px 20px;
-  min-height: 96px;
-  border-radius: 16px;
-  border: 1px solid var(--rule);
-  background: var(--panel);
-}
-.skill-detail__title { font-size: 1rem; font-weight: 500; color: var(--text); }
-.skill-detail__text { margin-top: 6px; max-width: 70ch; font-size: 0.98rem; line-height: 1.6; color: var(--text-2); }
-
-.tech--primary { background: var(--panel); border-color: var(--rule); }
-.tech--primary:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--rule)); }
+/* Cards in a row share one height, so a hovered outline lines up with its neighbours */
+.stack__items > li { display: flex; }
+.stack__items > li > .tech { flex: 1; }
 
 .tech__logo {
   flex: none;
@@ -671,6 +709,9 @@ img.tech__logo { object-fit: contain; }
   height: 2px;
   background: var(--accent);
 }
+.timeline__text { margin-top: 18px; max-width: 64ch; color: var(--text-2); font-size: 1rem; }
+.timeline__text strong { color: var(--text); font-weight: 600; }
+.timeline__text + .timeline__points { margin-top: 10px; }
 
 /* ---------- Contact ---------- */
 .contact { background: var(--bg-raised); }
@@ -683,17 +724,22 @@ img.tech__logo { object-fit: contain; }
   line-height: 0.95;
   letter-spacing: -0.035em;
 }
-.contact__lead { margin-top: 20px; color: var(--text-2); font-size: 1.12rem; max-width: 46ch; }
+.contact__lead { margin-top: 20px; color: var(--text-2); font-size: 1.12rem; }
 
 .contact__email {
-  position: relative;
   margin-top: 40px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 14px;
-  flex-wrap: wrap;
 }
 .contact__address {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 4.2vw, 2.6rem);
   font-weight: 600;
@@ -707,7 +753,28 @@ img.tech__logo { object-fit: contain; }
   transition: color 0.2s ease;
 }
 .contact__address:hover { color: var(--accent-text); }
-.contact__copied { font-size: 0.9rem; color: var(--accent-text); }
+.contact__address:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 4px; }
+/* Copy confirmation: fixed to the bottom centre of the window, so it stays in view wherever the page is scrolled.
+   It sits above the back-to-top button so the two never overlap. */
+.copy-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 88px;
+  z-index: 60;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: var(--panel);
+  color: var(--accent-text);
+  font-size: 0.95rem;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition: opacity 0.25s ease, transform 0.35s var(--ease);
+}
+.copy-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
 .socials { margin-top: 48px; display: flex; flex-wrap: wrap; gap: 10px; }
 .socials a {
@@ -726,8 +793,6 @@ img.tech__logo { object-fit: contain; }
 /* ---------- Footer ---------- */
 .footer { border-top: 1px solid var(--rule); padding: 28px 0; font-size: 0.9rem; color: var(--muted); background: var(--bg-raised); }
 .footer__inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.footer__top { display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s ease; }
-.footer__top:hover { color: var(--accent-text); }
 
 /* Back to top: appears once the hero has scrolled out of view */
 .to-top {
@@ -955,11 +1020,24 @@ img.tech__logo { object-fit: contain; }
   .nav__burger { display: inline-grid; }
   .float-stack { display: none; }
 
+  /* On phones the bar shrinks to an island on the right that holds only the two icons */
+  .nav { left: auto; right: 12px; margin: 0; height: 44px; }
+  .nav__inner { padding: 0 6px; }
+  .nav .icon-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    border-color: transparent;
+  }
+  .nav .icon-btn:hover { border-color: transparent; }
+  .nav__burger[aria-expanded="true"] { background: var(--accent); color: var(--accent-ink); }
+
   .nav__links {
     position: fixed;
-    top: var(--nav-h);
-    left: 12px;
+    top: 60px; /* 8px above the island, 44px tall, 8px gap below it */
+    left: auto;
     right: 12px;
+    width: min(260px, calc(100vw - 24px));
     border-radius: 20px;
     flex-direction: column;
     align-items: stretch;
@@ -981,7 +1059,6 @@ img.tech__logo { object-fit: contain; }
   }
   .nav__links > a:not(.btn) { padding: 14px 4px; font-size: 1.1rem; }
   .nav__links > a.is-active::after { left: 4px; right: auto; width: 24px; bottom: 8px; }
-  .nav__resume { margin: 12px 0 0; justify-content: center; }
 
 
   .about__grid { grid-template-columns: 1fr; }
