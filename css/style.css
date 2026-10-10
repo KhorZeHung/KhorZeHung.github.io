@@ -377,7 +377,16 @@ p { text-wrap: pretty; }
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  color: var(--accent-text);
+  color: var(--text);
+}
+.hero__role::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+  background: var(--accent);
 }
 .hero__bio {
   margin-top: 10px;
