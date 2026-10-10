@@ -20,6 +20,8 @@
   --accent-ink: #00161f;
   --accent-wash: rgb(58 157 117 / 0.14);
   --shadow: 0 30px 60px -30px rgb(0 10 15 / 0.85);
+  --glass: rgb(255 255 255 / 0.08);
+  --glass-edge: rgb(255 255 255 / 0.22);
   color-scheme: dark;
 }
 
@@ -36,6 +38,8 @@
   --accent-ink: #ffffff;
   --accent-wash: rgb(47 125 91 / 0.1);
   --shadow: 0 30px 50px -30px rgb(23 32 27 / 0.28);
+  --glass: rgb(255 255 255 / 0.3);
+  --glass-edge: rgb(255 255 255 / 0.75);
   color-scheme: light;
 }
 
@@ -218,6 +222,21 @@ p { text-wrap: pretty; }
   isolation: isolate;
 }
 
+/* Green gradient for the hero: soft blurred blobs in the accent greens over the page colour */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(36% 40% at 16% 24%, color-mix(in srgb, var(--accent) 34%, transparent), transparent 72%),
+    radial-gradient(32% 38% at 84% 16%, color-mix(in srgb, var(--accent-text) 28%, transparent), transparent 72%),
+    radial-gradient(42% 44% at 76% 86%, color-mix(in srgb, var(--accent) 38%, transparent), transparent 72%),
+    radial-gradient(28% 34% at 42% 66%, color-mix(in srgb, var(--accent-text) 20%, transparent), transparent 72%);
+  filter: blur(40px);
+}
+
 .hero__inner { position: relative; }
 .hero__text { position: relative; z-index: 1; width: fit-content; max-width: 820px; }
 
@@ -252,7 +271,7 @@ p { text-wrap: pretty; }
   outline: none;
 }
 .float-item.is-dragging { cursor: grabbing; }
-/* Backdrop for the logo cluster: a green gradient panel with a soft glow in one corner.
+/* Glass panel for the logo cluster: frosted over the hero gradient, with a green glow under it.
    It sits behind the tiles and ignores the pointer, so dragging is unaffected. Both
    pieces use the theme accent, so they follow light and dark mode. */
 .float-stack { isolation: isolate; }
@@ -266,12 +285,14 @@ p { text-wrap: pretty; }
 .float-stack::before {
   inset: -3% -5%;
   border-radius: 32px;
-  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
-  background: linear-gradient(155deg,
-    color-mix(in srgb, var(--accent) 24%, transparent),
-    color-mix(in srgb, var(--accent) 4%, transparent) 72%);
+  border: 1px solid var(--glass-edge);
+  background: var(--glass);
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.45), 0 30px 60px -30px rgb(0 10 15 / 0.45);
 }
 .float-stack::after {
+  z-index: -2;
   width: 72%;
   aspect-ratio: 1;
   right: -14%;
