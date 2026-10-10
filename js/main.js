@@ -14,7 +14,7 @@
     themeToggle.setAttribute("aria-label", "Switch to " + next + " theme");
     themeToggle.innerHTML = '<i class="ph ' + (theme === "dark" ? "ph-sun" : "ph-moon") + '" aria-hidden="true"></i>';
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", theme === "dark" ? "#0e1420" : "#f3f6f9");
+    if (meta) meta.setAttribute("content", theme === "dark" ? "#0e1420" : "#f2f4ef");
   }
 
   applyTheme(root.dataset.theme === "light" ? "light" : "dark");
