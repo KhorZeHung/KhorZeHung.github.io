@@ -243,6 +243,20 @@
     button.addEventListener("click", function () { selectSkill(button); });
   });
 
+  /* ---------- Back to top: shown once the hero has scrolled out of view ---------- */
+  var toTop = document.getElementById("to-top");
+  var hero = document.getElementById("hero");
+  if (toTop && hero) {
+    new IntersectionObserver(function (entries) {
+      toTop.classList.toggle("is-visible", !entries[0].isIntersecting);
+    }).observe(hero);
+
+    toTop.addEventListener("click", function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    });
+  }
+
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   /* ---------- About: stats count up when they come into view ---------- */
