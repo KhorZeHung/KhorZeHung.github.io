@@ -1,4 +1,6 @@
-# khorzehung.github.io
+# KhorZeHung.github.io
+
+Hi, I’m Ze Hung, a Software Engineer with 2.5 years of experience (till Oct 2026)
 
 Personal portfolio of **Khor Ze Hung**, Full Stack Developer.
 Live at **https://khorzehung.github.io**
