@@ -252,6 +252,34 @@ p { text-wrap: pretty; }
   outline: none;
 }
 .float-item.is-dragging { cursor: grabbing; }
+/* Backdrop for the logo cluster: a green gradient panel with a soft glow in one corner.
+   It sits behind the tiles and ignores the pointer, so dragging is unaffected. Both
+   pieces use the theme accent, so they follow light and dark mode. */
+.float-stack { isolation: isolate; }
+.float-stack::before,
+.float-stack::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.float-stack::before {
+  inset: -3% -5%;
+  border-radius: 32px;
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  background: linear-gradient(155deg,
+    color-mix(in srgb, var(--accent) 24%, transparent),
+    color-mix(in srgb, var(--accent) 4%, transparent) 72%);
+}
+.float-stack::after {
+  width: 72%;
+  aspect-ratio: 1;
+  right: -14%;
+  top: -18%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-text) 42%, transparent), transparent 68%);
+}
+
 .float-tile {
   position: absolute;
   inset: 0;
