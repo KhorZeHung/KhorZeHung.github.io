@@ -507,6 +507,26 @@ p { text-wrap: pretty; }
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 .tech:hover { background: var(--panel); border-color: var(--rule); }
+button.tech {
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+button.tech[aria-pressed="true"] { background: var(--accent-wash); border-color: var(--accent); }
+
+.skill-detail {
+  margin-top: 32px;
+  padding: 18px 20px;
+  min-height: 96px;
+  border-radius: 16px;
+  border: 1px solid var(--rule);
+  background: var(--panel);
+}
+.skill-detail__title { font-size: 1rem; font-weight: 500; color: var(--text); }
+.skill-detail__text { margin-top: 6px; max-width: 70ch; font-size: 0.98rem; line-height: 1.6; color: var(--text-2); }
 
 .tech--primary { background: var(--panel); border-color: var(--rule); }
 .tech--primary:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--rule)); }

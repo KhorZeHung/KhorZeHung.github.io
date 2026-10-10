@@ -199,6 +199,50 @@
     window.addEventListener("resize", resetAll);
   }
 
+  /* ---------- Skills: each skill is a button; selecting one shows where it was used ----------
+     The text for each skill lives in SKILL_DETAILS below. Click a selected skill again to clear it. */
+  var SKILL_DETAILS = {
+    "go": "Primary language. I built six Go microservices at COS Great Trading: KYC verification, leads, case management, gamification, questionnaire forms and centralised logging.",
+    "typescript": "Frontend features in React 19 and TypeScript at COS Great Trading.",
+    "javascript": "Listed under backend skills in my resume.",
+    "apache-kafka": "Built the real-time Kafka consumer for the financial reporting pipeline, and Kafka event propagation across services at COS Great Trading.",
+    "mongodb": "Primary database for Renotech.",
+    "apache-doris": "Part of my day-to-day data stack at COS Great Trading, alongside Kafka, MongoDB and QuestDB.",
+    "questdb": "Part of my day-to-day data stack at COS Great Trading, alongside Kafka, MongoDB and Apache Doris.",
+    "react-19": "Built frontend features in React 19 at COS Great Trading.",
+    "nextjs": "Built Renotech with Next.js (App Router).",
+    "tailwind-css": "Listed in my frontend skills, alongside shadcn/ui and Ant Design.",
+    "ant-design": "Listed in my frontend skills, alongside Tailwind CSS and shadcn/ui.",
+    "ubuntu-linux": "Linux (Ubuntu) is part of my infrastructure toolkit.",
+    "nginx": "Listed under infrastructure, alongside Cloudflare and Linux.",
+    "cloudflare": "Configured Cloudflare DNS and R2 object storage for Renotech, and use Cloudflare Tunnel.",
+    "vercel": "Renotech is deployed on Vercel.",
+    "git": "Used for version control across my projects.",
+    "bitbucket": "Listed under tools, next to Git.",
+    "postman": "Kept Postman collections as the API contract for frontend developers at COS Great Trading.",
+    "slack": "Listed under tools for team communication."
+  };
+  var DEFAULT_SKILL_TEXT = "Select a skill to see where I've used it.";
+  var skillButtons = document.querySelectorAll("button.tech[data-skill]");
+  var skillTitle = document.getElementById("skill-detail-title");
+  var skillText = document.getElementById("skill-detail-text");
+
+  function selectSkill(button) {
+    var wasSelected = button.getAttribute("aria-pressed") === "true";
+    skillButtons.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+    if (wasSelected) {
+      skillTitle.textContent = "";
+      skillText.textContent = DEFAULT_SKILL_TEXT;
+      return;
+    }
+    button.setAttribute("aria-pressed", "true");
+    skillTitle.textContent = button.dataset.name;
+    skillText.textContent = SKILL_DETAILS[button.dataset.skill] || DEFAULT_SKILL_TEXT;
+  }
+  skillButtons.forEach(function (button) {
+    button.addEventListener("click", function () { selectSkill(button); });
+  });
+
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   /* ---------- About: stats count up when they come into view ---------- */

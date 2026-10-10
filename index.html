@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
-  <link rel="stylesheet" href="css/style.css?v=20" />
+  <link rel="stylesheet" href="css/style.css?v=21" />
 
   <script type="application/ld+json">
   {
@@ -161,108 +161,74 @@
           <div class="stack__group">
             <h3 class="stack__label">Languages and backend</h3>
             <ul class="stack__items">
-              <li class="tech tech--primary">
-                <svg class="tech__logo" style="--c:#00ADD8;--c-light:#00789A" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#go" /></svg>
-                <span class="tech__name">Go<small>Primary language</small></span>
-              </li>
-              <li class="tech">
-                <img class="tech__logo" src="assets/logos/typescript.svg" alt="" width="30" height="30" decoding="async" />
-                <span class="tech__name">TypeScript</span>
-              </li>
-              <li class="tech">
-                <svg class="tech__logo" style="--c:#F7DF1E;--c-light:#D4B800" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#javascript" /></svg>
-                <span class="tech__name">JavaScript</span>
-              </li>
+              <li><button class="tech tech--primary" type="button" aria-pressed="false" data-skill="go" data-name="Go"><svg class="tech__logo" style="--c:#00ADD8;--c-light:#00789A" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#go" /></svg>
+                <span class="tech__name">Go<small>Primary language</small></span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="typescript" data-name="TypeScript"><img class="tech__logo" src="assets/logos/typescript.svg" alt="" width="30" height="30" decoding="async" />
+                <span class="tech__name">TypeScript</span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="javascript" data-name="JavaScript"><svg class="tech__logo" style="--c:#F7DF1E;--c-light:#D4B800" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#javascript" /></svg>
+                <span class="tech__name">JavaScript</span></button></li>
             </ul>
           </div>
 
           <div class="stack__group">
             <h3 class="stack__label">Data and messaging</h3>
             <ul class="stack__items">
-              <li class="tech tech--primary">
-                <svg class="tech__logo" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#apachekafka" /></svg>
-                <span class="tech__name">Apache Kafka<small>Event streaming</small></span>
-              </li>
-              <li class="tech tech--primary">
-                <svg class="tech__logo" style="--c:#47A248;--c-light:#2E7D32" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#mongodb" /></svg>
-                <span class="tech__name">MongoDB<small>Primary database</small></span>
-              </li>
-              <li class="tech">
-                <svg class="tech__logo" style="--c:#444FD9;--c-dark:#7C85F2" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#apachedoris" /></svg>
-                <span class="tech__name">Apache Doris</span>
-              </li>
-              <li class="tech">
-                <img class="tech__logo" src="assets/logos/questdb.svg" alt="" width="30" height="30" decoding="async" />
-                <span class="tech__name">QuestDB</span>
-              </li>
+              <li><button class="tech tech--primary" type="button" aria-pressed="false" data-skill="apache-kafka" data-name="Apache Kafka"><svg class="tech__logo" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#apachekafka" /></svg>
+                <span class="tech__name">Apache Kafka<small>Event streaming</small></span></button></li>
+              <li><button class="tech tech--primary" type="button" aria-pressed="false" data-skill="mongodb" data-name="MongoDB"><svg class="tech__logo" style="--c:#47A248;--c-light:#2E7D32" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#mongodb" /></svg>
+                <span class="tech__name">MongoDB<small>Primary database</small></span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="apache-doris" data-name="Apache Doris"><svg class="tech__logo" style="--c:#444FD9;--c-dark:#7C85F2" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#apachedoris" /></svg>
+                <span class="tech__name">Apache Doris</span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="questdb" data-name="QuestDB"><img class="tech__logo" src="assets/logos/questdb.svg" alt="" width="30" height="30" decoding="async" />
+                <span class="tech__name">QuestDB</span></button></li>
             </ul>
           </div>
 
           <div class="stack__group">
             <h3 class="stack__label">Frontend</h3>
             <ul class="stack__items">
-              <li class="tech">
-                <svg class="tech__logo" style="--c:#61DAFB;--c-light:#0B7FA6" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#react" /></svg>
-                <span class="tech__name">React 19</span>
-              </li>
-              <li class="tech">
-                <svg class="tech__logo" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#nextdotjs" /></svg>
-                <span class="tech__name">Next.js</span>
-              </li>
-              <li class="tech">
-                <svg class="tech__logo" style="--c:#06B6D4" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#tailwindcss" /></svg>
-                <span class="tech__name">Tailwind CSS</span>
-              </li>
-              <li class="tech">
-                <svg class="tech__logo" style="--c:#0170FE;--c-dark:#3D8EFF" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#antdesign" /></svg>
-                <span class="tech__name">Ant Design</span>
-              </li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="react-19" data-name="React 19"><svg class="tech__logo" style="--c:#61DAFB;--c-light:#0B7FA6" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#react" /></svg>
+                <span class="tech__name">React 19</span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="next-js" data-name="Next.js"><svg class="tech__logo" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#nextdotjs" /></svg>
+                <span class="tech__name">Next.js</span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="tailwind-css" data-name="Tailwind CSS"><svg class="tech__logo" style="--c:#06B6D4" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#tailwindcss" /></svg>
+                <span class="tech__name">Tailwind CSS</span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="ant-design" data-name="Ant Design"><svg class="tech__logo" style="--c:#0170FE;--c-dark:#3D8EFF" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#antdesign" /></svg>
+                <span class="tech__name">Ant Design</span></button></li>
             </ul>
           </div>
 
           <div class="stack__group">
             <h3 class="stack__label">Infrastructure</h3>
             <ul class="stack__items">
-              <li class="tech">
-                <svg class="tech__logo" style="--c:#E95420" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#ubuntu" /></svg>
-                <span class="tech__name">Ubuntu Linux</span>
-              </li>
-              <li class="tech">
-                <svg class="tech__logo" style="--c:#009639;--c-dark:#1DB954" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#nginx" /></svg>
-                <span class="tech__name">Nginx</span>
-              </li>
-              <li class="tech">
-                <svg class="tech__logo" style="--c:#F38020;--c-light:#C95A12" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#cloudflare" /></svg>
-                <span class="tech__name">Cloudflare<small>DNS, Tunnel, R2</small></span>
-              </li>
-              <li class="tech">
-                <svg class="tech__logo" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#vercel" /></svg>
-                <span class="tech__name">Vercel</span>
-              </li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="ubuntu-linux" data-name="Ubuntu Linux"><svg class="tech__logo" style="--c:#E95420" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#ubuntu" /></svg>
+                <span class="tech__name">Ubuntu Linux</span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="nginx" data-name="Nginx"><svg class="tech__logo" style="--c:#009639;--c-dark:#1DB954" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#nginx" /></svg>
+                <span class="tech__name">Nginx</span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="cloudflare" data-name="Cloudflare"><svg class="tech__logo" style="--c:#F38020;--c-light:#C95A12" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#cloudflare" /></svg>
+                <span class="tech__name">Cloudflare<small>DNS, Tunnel, R2</small></span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="vercel" data-name="Vercel"><svg class="tech__logo" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#vercel" /></svg>
+                <span class="tech__name">Vercel</span></button></li>
             </ul>
           </div>
 
           <div class="stack__group">
             <h3 class="stack__label">Tools and workflow</h3>
             <ul class="stack__items">
-              <li class="tech">
-                <svg class="tech__logo" style="--c:#F03C2E" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#git" /></svg>
-                <span class="tech__name">Git</span>
-              </li>
-              <li class="tech">
-                <svg class="tech__logo" style="--c:#0052CC;--c-dark:#2684FF" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#bitbucket" /></svg>
-                <span class="tech__name">Bitbucket</span>
-              </li>
-              <li class="tech">
-                <svg class="tech__logo" style="--c:#FF6C37" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#postman" /></svg>
-                <span class="tech__name">Postman</span>
-              </li>
-              <li class="tech">
-                <img class="tech__logo" src="assets/logos/slack.svg" alt="" width="30" height="30" decoding="async" />
-                <span class="tech__name">Slack</span>
-              </li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="git" data-name="Git"><svg class="tech__logo" style="--c:#F03C2E" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#git" /></svg>
+                <span class="tech__name">Git</span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="bitbucket" data-name="Bitbucket"><svg class="tech__logo" style="--c:#0052CC;--c-dark:#2684FF" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#bitbucket" /></svg>
+                <span class="tech__name">Bitbucket</span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="postman" data-name="Postman"><svg class="tech__logo" style="--c:#FF6C37" fill="currentColor" aria-hidden="true"><use href="assets/tech-icons.svg#postman" /></svg>
+                <span class="tech__name">Postman</span></button></li>
+              <li><button class="tech" type="button" aria-pressed="false" data-skill="slack" data-name="Slack"><img class="tech__logo" src="assets/logos/slack.svg" alt="" width="30" height="30" decoding="async" />
+                <span class="tech__name">Slack</span></button></li>
             </ul>
           </div>
+        </div>
+        <div class="skill-detail" aria-live="polite">
+          <p class="skill-detail__title" id="skill-detail-title"></p>
+          <p class="skill-detail__text" id="skill-detail-text">Select a skill to see where I've used it.</p>
         </div>
       </div>
     </section>
@@ -358,6 +324,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=11" defer></script>
+  <script src="js/main.js?v=12" defer></script>
 </body>
 </html>
