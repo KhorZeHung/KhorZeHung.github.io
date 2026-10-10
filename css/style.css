@@ -462,6 +462,7 @@ i.tech__logo {
   color: var(--muted) !important;
 }
 
+img.tech__logo { object-fit: contain; }
 .tech__name {
   display: grid;
   font-weight: 500;
