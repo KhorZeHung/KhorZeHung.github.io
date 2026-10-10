@@ -8,18 +8,18 @@
 
 :root,
 :root[data-theme="dark"] {
-  --bg: #0e1420;           /* slate ink */
-  --bg-raised: #121a29;
-  --panel: #172033;
-  --rule: #243049;
-  --text: #e8edf4;
-  --text-2: #b4bfcf;
-  --muted: #8f9cb2;
-  --accent: #3cc8b4;       /* teal */
-  --accent-text: #5fd8c6;
-  --accent-ink: #062520;
-  --accent-wash: rgb(60 200 180 / 0.1);
-  --shadow: 0 30px 60px -30px rgb(3 8 18 / 0.85);
+  --bg: #001e2b;           /* deep blue-green ink, close to the MongoDB dark UI */
+  --bg-raised: #002736;
+  --panel: #053243;
+  --rule: #1d4452;
+  --text: #e6f2ef;
+  --text-2: #b8ccc8;
+  --muted: #8aa3a0;
+  --accent: #3a9d75;       /* the light-mode green, lifted a step for dark backgrounds */
+  --accent-text: #6cd3a5;
+  --accent-ink: #00161f;
+  --accent-wash: rgb(58 157 117 / 0.14);
+  --shadow: 0 30px 60px -30px rgb(0 10 15 / 0.85);
   color-scheme: dark;
 }
 
