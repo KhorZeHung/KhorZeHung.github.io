@@ -78,16 +78,6 @@
 
   if (!("IntersectionObserver" in window)) return;
 
-  /* ---------- Nav background once the page scrolls past the top ---------- */
-  var sentinel = document.createElement("div");
-  sentinel.setAttribute("aria-hidden", "true");
-  sentinel.style.cssText = "position:absolute;top:0;left:0;width:1px;height:24px;pointer-events:none;";
-  document.body.prepend(sentinel);
-
-  new IntersectionObserver(function (entries) {
-    nav.classList.toggle("is-scrolled", !entries[0].isIntersecting);
-  }).observe(sentinel);
-
   /* ---------- Highlight the nav link of the section in view ---------- */
   var linkFor = {};
   navLinks.querySelectorAll('a[href^="#"]').forEach(function (a) {

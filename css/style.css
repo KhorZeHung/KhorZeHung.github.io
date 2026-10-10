@@ -170,12 +170,6 @@ p { text-wrap: pretty; }
   border-bottom: 1px solid transparent;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-.nav.is-scrolled {
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(14px) saturate(150%);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
-  border-bottom-color: var(--rule);
-}
 
 .nav__inner {
   height: 100%;
@@ -917,7 +911,7 @@ img.tech__logo { object-fit: contain; }
     transform: none;
     transition: opacity 0.25s ease, transform 0.35s var(--ease);
   }
-  .nav.is-open { background: var(--bg); border-bottom-color: var(--rule); }
+  .nav.is-open { background: transparent; border-bottom-color: transparent; }
   .nav__links > a:not(.btn) { padding: 14px 4px; font-size: 1.1rem; }
   .nav__links > a.is-active::after { left: 4px; right: auto; width: 24px; bottom: 8px; }
   .nav__resume { margin: 12px 0 0; justify-content: center; }
