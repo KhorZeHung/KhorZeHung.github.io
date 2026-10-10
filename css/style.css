@@ -208,7 +208,7 @@ p { text-wrap: pretty; }
 }
 .nav__resume { margin-left: 12px; }
 
-.nav__actions { display: flex; align-items: center; gap: 8px; }
+.nav__actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 .nav__burger { display: none; }
 
 /* ---------- Hero ---------- */
