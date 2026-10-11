@@ -158,8 +158,7 @@
     scheduleNavHide();
   });
 
-  /* ---------- Copy email: clicking the address copies it and shows a short confirmation ---------- */
-  var copyBtn = document.getElementById("copy-email");
+  /* ---------- Copy: clicking an element with data-copy copies its text and shows data-copied as confirmation ---------- */
   var copyStatus = document.getElementById("copy-status");
   var copyTimer;
 
@@ -186,13 +185,16 @@
     return ok;
   }
 
-  copyBtn.addEventListener("click", function () {
-    var email = copyBtn.dataset.email;
-    var copied = navigator.clipboard && window.isSecureContext
-      ? navigator.clipboard.writeText(email).then(function () { return true; }, function () { return false; })
-      : Promise.resolve(legacyCopy(email));
-    copied.then(function (ok) {
-      flashCopyStatus(ok ? "Email copied to clipboard" : "Could not copy. Please try again.");
+  document.querySelectorAll("[data-copy]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      var text = el.dataset.copy;
+      var message = el.dataset.copied || "Copied to clipboard";
+      var copied = navigator.clipboard && window.isSecureContext
+        ? navigator.clipboard.writeText(text).then(function () { return true; }, function () { return false; })
+        : Promise.resolve(legacyCopy(text));
+      copied.then(function (ok) {
+        flashCopyStatus(ok ? message : "Could not copy. Please try again.");
+      });
     });
   });
 

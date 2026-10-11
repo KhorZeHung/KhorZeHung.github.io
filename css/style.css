@@ -764,8 +764,9 @@ img.tech__logo { object-fit: contain; }
 .copy-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
 .contact__phone { margin-top: 14px; font-size: 1.1rem; color: var(--text-2); }
-.contact__phone a { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; transition: color 0.2s ease; }
-.contact__phone a:hover { color: var(--accent-text); }
+.contact__phone-btn { padding: 0; border: 0; background: none; font: inherit; color: var(--text); text-align: left; cursor: pointer; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; transition: color 0.2s ease; }
+.contact__phone-btn:hover { color: var(--accent-text); }
+.contact__address:focus-visible, .contact__phone-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
 .socials { margin-top: 48px; display: flex; flex-wrap: wrap; gap: 10px; }
 .socials a {
   display: inline-flex;
